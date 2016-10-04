@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" name="viewport" content="initial-scale=1">
+		<link rel="stylesheet" href="material/roboto.css">
+		<link rel="stylesheet" href="material/angular-material.min.css">
+		<link rel="stylesheet" href="styles/styles.css">
+		<title>New</title>
+	</head>
+	<body ng-controller="safety__" ng-app="safety" ng-cloak>
+
+		<md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
+			<div class="md-toolbar-tools">
+				<md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()" hide-gt-md>
+					<md-icon md-svg-src="svg/ic_menu_white_24px.svg"></md-icon>
+				</md-button>
+				<h1 class="md-toolbar-item">Community Safety</h1>
+				<span flex></span>
+			</div>
+		</md-toolbar>
+
+		<md-section layout="row" flex>
+			<md-sidenav
+				class="md-sidenav-left"
+				md-component-id="left"
+				md-is-locked-open="$mdMedia('gt-md')"
+				md-whiteframe="4">
+
+				<md-toolbar class="site-content-toolbar">
+					<div class="md-toolbar-tools">
+						<md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()" hide-gt-md>
+							<md-icon md-svg-src="svg/ic_menu_white_24px.svg"></md-icon>
+						</md-button>
+						<h2 class="md-toolbar-item">Options</h2>
+						<span flex></span>
+					</div>
+				</md-toolbar>
+
+				<md-content layout-padding >
+					<div ng-include="'login.html'"></div>
+
+					<p>
+						Here be words and buttons to give yee options
+					</p>
+				</md-content>
+			</md-sidenav>
+
+			<md-content flex layout-padding>
+				<div layout-align="center center">
+					<div class="buttons" layout="row" layout-align="space-around center" layout-wrap>
+						<a href="incident.html">
+							<div class="big-button red" md-whiteframe="5">
+								<img class="background-image" src="svg/ic_report_problem_black_48px.svg" />
+								<div class="footer" layout-align="center center">
+									<h3 style="margin: 0">Report Incident</h3>
+								</div>
+							</div>
+						</a>
+						<a href="complaint.html">
+							<div class="big-button orange"  md-whiteframe="5">
+								<img class="background-image" src="svg/ic_sentiment_dissatisfied_black_48px.svg" />
+								<div class="footer" layout-align="center center">
+									<h3 style="margin: 0">File Complaint</h3>
+								</div>
+							</div>
+						</a>
+						<a ng-click="openMap()">
+							<div class="big-button green" md-whiteframe="5">
+								<img class="background-image" src="svg/ic_map_black_48px.svg" />
+								<div class="footer" layout-align="center center">
+									<h3 style="margin: 0">View Map</h3>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</md-content>
+		</md-section>
+
+		<script src="material/angular.min.js"></script>
+		<script src="material/angular-animate.min.js"></script>
+		<script src="material/angular-aria.min.js"></script>
+		<script src="material/angular-messages.min.js"></script>
+		<script src="material/angular-material.min.js"></script>
+		<script src="scripts/safety.js"></script>
+	</body>
+</html>

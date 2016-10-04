@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" name="viewport" content="initial-scale=1">
+		<link rel="stylesheet" href="material/roboto.css">
+		<link rel="stylesheet" href="material/angular-material.min.css">
+		<link rel="stylesheet" href="styles.css">
+		<title>New</title>
+	</head>
+	<body ng-controller="incident__" ng-app="incident" ng-cloak>
+
+		<md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
+			<div class="md-toolbar-tools">
+				<md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()" hide-gt-md>
+					<md-icon md-svg-src="svg/ic_menu_white_24px.svg"></md-icon>
+				</md-button>
+				<h1 class="md-toolbar-item">Community Safety</h1>
+				<span flex></span>
+			</div>
+		</md-toolbar>
+
+		<md-section layout="row" flex>
+			<md-sidenav
+				class="md-sidenav-left"
+				md-component-id="left"
+				md-is-locked-open="$mdMedia('gt-md')"
+				md-whiteframe="4">
+
+				<md-toolbar class=" site-content-toolbar">
+					<div class="md-toolbar-tools">
+						<md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()" hide-gt-md>
+							<md-icon md-svg-src="svg/ic_menu_white_24px.svg"></md-icon>
+						</md-button>
+						<h2 class="md-toolbar-item">Options</h2>
+						<span flex></span>
+					</div>
+				</md-toolbar>
+
+				<md-content layout-padding >
+					<form name="loginForm">
+						<div layout="column" layout-align="space-around">
+							<h2>Please Log in</h2>
+							<md-input-container>
+								<label>ID Number or e-mail address</label>
+								<input ng-model="userId" name="id" required md-maxlength="13" ng-pattern="/^[0-9]*$/" />
+								<div ng-messages="loginForm.id.$error" ng-hide="showHints">
+									<div ng-message="pattern">Only numbers allowed</div>
+								</div>
+							</md-input-container>
+							<md-input-container>
+								<label>Password</label>
+								<input ng-model="userPassword" name="password" required type="password" />
+								<div ng-messages="loginForm.password.$error"></div>
+							</md-input-container>
+							<md-button class="md-raised md-primary" ng-click="login()" ng-disabled="loginForm.$invalid">
+								<span style="margin-right: 1em">Login</span>
+								<md-icon md-svg-src="svg/ic_send_white_24px.svg"></md-icon>
+							</md-button>
+						</div>
+					</form>
+
+					<p>
+						Here be words and buttons to give yee options
+					</p>
+				</md-content>
+
+			</md-sidenav>
+
+			<md-content flex layout-padding>
+				<div layout="column" layout-align="space-between">
+					<div layout="row" layout-align="space-between" layout-wrap>
+						<md-input-container flex style="min-width: 200px">
+							<label>Address of the incident</label>
+							<input ng-model="address" name="addr" />
+						</md-input-container>
+						<md-button class="md-raised" aria-label="Current Location" ng-click="null" style="margin: auto; margin-left: 0.5rem">
+							Current location
+							<md-icon md-svg-icon="svg/ic_place_black_24px.svg" aria-label="Current location"></md-icon>
+						</md-button>
+					</div>
+					<div layout="column" layout-wrap>
+						<h2>Select a location</h2>
+						<div flex aria-label="map for select location" style="height: 100vw">
+							put your map here
+						</div>
+						<md-button class="md-raised" href="" aria-label="Select Location" ng-click="null" style="max-width: 200px">
+							Select Location
+							<md-icon md-svg-icon="svg/ic_place_black_24px.svg" aria-label="Current location"></md-icon>
+						</md-button>
+					</div>
+				</div>
+			</md-content>
+		</md-section>
+
+		<script src="material/angular.min.js"></script>
+		<script src="material/angular-animate.min.js"></script>
+		<script src="material/angular-aria.min.js"></script>
+		<script src="material/angular-messages.min.js"></script>
+		<script src="material/angular-material.min.js"></script>
+		<script src="scripts/incident.js"></script>
+	</body>
+</html>

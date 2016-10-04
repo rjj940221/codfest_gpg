@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Address</title>
+    </head>
+    <body>
+        <form>
+            <md-input-container class="md-block">
+                <label>Address</label>
+                <input ng-model="user.address">
+            </md-input-container>
+
+            <md-input-container md-no-float class="md-block">
+                <input ng-model="user.address2" placeholder="Address 2">
+            </md-input-container>
+
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>City</label>
+                    <input ng-model="user.city">
+                </md-input-container>
+
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>State</label>
+                    <md-select ng-model="user.state">
+                        <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                            {{state.abbrev}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Postal Code</label>
+                    <input name="postalCode" ng-model="user.postalCode" placeholder="2000" required ng-pattern="/^[0-9]{4}$/" md-maxlength="5">
+
+                    <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                        <div ng-message="required" class="my-message">You must supply a postal code.</div>
+                        <div ng-message="pattern" class="my-message">That doesn't look like a valid postal code.
+                        </div>
+                        <div ng-message="md-maxlength" class="my-message">
+                            Don't use the long version silly...we don't need to be that specific...
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+        </form>
+    </body>
+</html>

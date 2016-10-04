@@ -1,0 +1,78 @@
+a {
+	color:	#000;
+}
+a:visited {
+	color:	#000;
+}
+a:hover {
+	color:	#000;
+}
+a:active {
+	color:	#000;
+}
+
+.buttons {
+	margin:		0 auto;
+	height:		100%;
+}
+.big-button {
+	position:		relative;
+	min-width:		150px;
+	max-width:		250px;
+	min-height:		150px;
+	max-height:		250px;
+	border-radius:	10px;
+	margin:			0.5rem;
+}
+
+.red {
+	background-color:	#F44336;
+}
+
+.orange {
+	background-color:	#FF9800;
+}
+
+.green {
+	background-color:	#4CAF50;
+}
+
+.background-image {
+	width:		80%;
+	position:	relative;
+	left:		50%;
+    top:		50%;
+    transform:	translate(-50%, 5%);
+}
+
+.footer {
+	position:	absolute;
+	width:		100%;
+	bottom:		0;
+	left:		0;
+	text-align:	center;
+	min-height:	15%;
+}
+
+.badge {
+	margin:				auto 0;
+	min-width:			1rem;
+	min-height: 		1rem;
+	padding:			0 0.5rem;
+	text-align:			center;
+	font-size:			0.8rem;
+    font-weight:		300;
+    color:				#fff;
+    background-color:	#26a69a;
+    border-radius:		5px;
+}
+
+.new-account {
+	font-size: 0.8rem;
+	margin-left: auto;;
+}
+
+.login {
+	margin-left: auto;;
+	padding: 0 1rem;
+}

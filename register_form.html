@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Register</title>
+    </head>
+    <body>
+        <form name="register">
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm requited>
+                    <label>First name</label>
+                    <input ng-model="user.firstName">
+                </md-input-container>
+
+                <md-input-container class="md-block" flex-gt-sm required>
+                    <label>Last name</label>
+                    <input ng-model="user.lastName">
+                </md-input-container>
+			</div>
+
+			<md-input-container>
+				<label>ID Number</label>
+				<input ng-model="user.id" name="id" required md-maxlength="13" ng-pattern="/^[0-9]{13}$/" />
+				<div ng-messages="register.id.$error" ng-hide="showHints">
+					<div ng-message="pattern">Only 13 numbers allowed</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container>
+				<label>Cellphone number</label>
+				<input type="text" ng-model="user.cellno">
+			</md-input-container>
+
+			<md-input-container>
+				<label>Email</label>
+				<input type="text" ng-model="user.name">
+			</md-input-container>
+        </form>
+    </body>
+</html>
