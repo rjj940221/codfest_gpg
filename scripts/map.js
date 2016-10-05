@@ -1,13 +1,22 @@
-var incidents = [];
+var incidents_db = [];
+var incident_mark = [];
+var saps_db = [];
+var saps_mark  = [];
 var heatmap_data = [];
-
-var crimes = null;
-var marker_on = 0;
+var marker_incident = 0;
+var marker_saps = 0;
 var map;
-var url = "http://owen.exall.za.net/GPG/select_incidents.php";
-$.getJSON(url, function(result) {
+var url_incident = "http://owen.exall.za.net/GPG/select_incidents.php";
+$.getJSON(url_incident, function(result) {
 	$.each(result, function(i, field) {
-		incidents.push(field);
+		incidents_db.push(field);
+	});
+});
+
+var url_saps = "http://owen.exall.za.net/GPG/select_all_police_stations.php";
+$.getJSON(url_saps, function(result) {
+	$.each(result, function(i, field) {
+		saps_db.push(field);
 	});
 });
 
@@ -19,6 +28,12 @@ var image = {
 	anchor: new google.maps.Point(14, 40)
 };
 
+var image_saps = {
+	url: 'svg/ic_saps_back_40px.svg',
+	size: new google.maps.Size(40, 40),
+	origin: new google.maps.Point(0, 0),
+	anchor: new google.maps.Point(14, 40)
+};
 // Gradient for the heatmap
 var grad_array =
 [	'rgba(0, 255, 255, 0)',
@@ -36,7 +51,7 @@ var heatmap = new google.maps.visualization.HeatmapLayer({
 
 function load_heatmap(map) {
 	console.log("Loading heatmap");
-	incidents.forEach(function(item) {
+	incidents_db.forEach(function(item) {
 		console.log(item);
 		heatmap_data.push(new google.maps.LatLng(item.latitude, item.longitude));
 	});
@@ -55,13 +70,6 @@ var map_options = {
 	fullscreenControl: false
 };
 
-function load_heatmap(map) {
-	console.log("Loading heatmap");
-	incidents.forEach(function(item) {
-		heatmap_data.push(new google.maps.LatLng(item.latitude, item.longitude));
-	});
-}
-
 function init_map() {
 	console.log("Opening map");
 	console.log(heatmap_data);
@@ -74,7 +82,6 @@ function draw_map() {
 	map = new google.maps.Map(document.getElementById("map"), map_options);
 	//show_incidents(map);
 	var my_marker = new google.maps.Marker({position: my_location, map: map});
-
 }
 
 function on_success(position){
@@ -88,18 +95,4 @@ function on_success(position){
 function on_error(error) {
 	console.log("GPS activation failure!");
 	draw_map();
-}
-
-function show_incidents(map) {
-	console.log("Initiating incident loop");
-	incidents.forEach(function(item) {
-		//console.log(item);
-		var crimes = new google.maps.Marker({
-			position: new google.maps.LatLng(item.latitude, item.longitude),
-			map: map,
-			icon: image,
-			title: item.event,
-			zIndex: parseInt(item.id)
-		});
-	});
 }

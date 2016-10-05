@@ -80,60 +80,59 @@ gpg.controller('jobs__', function($scope) {
 });
 
 gpg.controller('map__', function($scope) {
+
   $scope.gimme_heat = function(){
     load_heatmap();
     heatmap.setMap(heatmap.getMap() ? null : map);
   };
-  $scope.showme_crimes = function(){
-    console.log("Initiating incident loop");
 
-    if (marker_on === 1)
+
+  $scope.showme_saps = function() {
+  	console.log("Initiating saps loop");
+    marker_saps = marker_saps ? 0 : 1;
+    if (marker_saps === 1)
     {
-    //  setMapOnAll(map);
+  	saps_db.forEach(function(item) {
+  		//console.log(item);
+  		var saps = new google.maps.Marker({
+  			position: new google.maps.LatLng(item.latitude, item.longitude),
+  			map: map,
+  			icon: image_saps,
+  			title: item.name,
+  			zIndex: parseInt(item.id)
+  		});
+      saps_mark.push(saps);
+  	});
     }
-
-    marker_on = marker_on ? 0 : 1;
-
-    incidents.forEach(function(item) {
-      console.log(item);
-    //crimes.visible = false;
-    //  item.setVisible(true ? false : true);
-
-    if (marker_on === 1)
-    {
-      console.log("marker1");
-        crimes = new google.maps.Marker({
-        position: new google.maps.LatLng(item.latitude, item.longitude),
-        map: map,
-        icon: image,
-        title: item.event,
-        zIndex: parseInt(item.id)
-      });
-    }
-
     else {
-      /*
-      console.log("marker 0");
-      crimes.setVisible(false);
-      */
-      console.log("marker1");
-        crimes = new google.maps.Marker({
-        position: new google.maps.LatLng(item.latitude, item.longitude),
-        map: null,
-        icon: image,
-        title: item.event,
-        zIndex: parseInt(item.id)
-      });
-
-
-
+      saps_mark.setMap(null);
     }
-
-    });
-    console.log(crimes.length);
-    //  setMapOnAll(map);
   };
 
+  $scope.showme_crimes = function() {
+    console.log("Initiating incident loop");
+    marker_incident = marker_incident ? 0 : 1;
+    if (marker_incident === 1)
+    {
+    incidents_db.forEach(function(item) {
+        var crimes = new google.maps.Marker({
+          position: new google.maps.LatLng(item.latitude, item.longitude),
+          map: map,
+          icon: image,
+          title: item.event,
+          zIndex: parseInt(item.id)
+        });
+        incident_mark.push(crimes);
+      });
+    }
+    else {
+      incident_mark.forEach(function(marker) {
+        incident_mark.setMap(null);
+      });
+//markers = [];
+  //    incident_mark.setMap(null);
+    }
+  };
 	document.title = "Map";
 });
 
