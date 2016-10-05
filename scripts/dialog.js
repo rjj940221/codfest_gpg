@@ -1,4 +1,4 @@
-function dialog__($http, $scope, $mdDialog, $mdSidenav, userId, $sessionStorage) {
+function dialog__($http, $scope, $mdDialog, $mdSidenav, $sessionStorage) {
 	console.log("Opening dialog");
 	$scope.hide = function() {
 		$mdDialog.hide();
@@ -10,8 +10,8 @@ function dialog__($http, $scope, $mdDialog, $mdSidenav, userId, $sessionStorage)
 
 	$scope.apply = function() {
 		$mdDialog.hide();
-		if (!userId.getUserId()) {
-			$mdSidenav('left').open();
+		if (!$sessionStorage.user_id) {
+			$mdSidenav('account').open();
 		}
 	};
 
@@ -47,7 +47,7 @@ function dialog__($http, $scope, $mdDialog, $mdSidenav, userId, $sessionStorage)
 			method: 'POST',
 			url: 'http://owen.exall.za.net/gpg/register_user.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			data: n_user				
+			data: n_user
 		}).then(function successCallback(response, ev) {
 			console.log(response);
 			if (response.data === "false") {
