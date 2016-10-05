@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<form name="loginForm">
+	<div layout="column" layout-align="space-around">
+		<h2>Please Log in</h2>
+		<md-input-container>
+			<label>ID Number or e-mail address</label>
+			<input ng-model="$parent.userId" name="id" required md-maxlength="13" ng-pattern="/^[0-9]*$/" />
+			<div ng-messages="loginForm.id.$error" ng-hide="showHints">
+				<div ng-message="pattern">Only numbers allowed</div>
+			</div>
+		</md-input-container>
+		<md-input-container>
+			<label>Password</label>
+			<input ng-model="$parent.userPassword" name="password" required type="password" />
+			<div ng-messages="loginForm.password.$error"></div>
+		</md-input-container>
+		<md-button class="md-raised md-primary login" ng-click="login()" ng-disabled="loginForm.$invalid">
+			<span style="margin-right: 1em">Login</span>
+			<md-icon md-svg-src="svg/ic_send_white_24px.svg"></md-icon>
+		</md-button>
+		<md-button class="new-account" aria-label="register new account" ng-click="register()">
+			Register new account
+		</md-button>
+	</div>
+</form>
+
+<script src="login.js"
