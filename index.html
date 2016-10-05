@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-controller="home__" ng-app="home">
+    <head>
+        <meta charset="utf-8" name="viewport" content="initial-scale=1">
+        <link rel="stylesheet" href="material/roboto.css">
+        <link rel="stylesheet" href="material/angular-material.min.css">
+        <link rel="stylesheet" href="styles/styles.css">
+		    <script src="material/jquery-3.1.1.min.js"></script>
+	      <script src="material/gmaps.js"></script>
+		    <script src="scripts/map.js"></script>
+        <script src="scripts/gps_on.js"></script>
+        <script src="material/angular.min.js"></script>
+        <script src="material/angular-route.min.js"></script>
+        <script src="material/angular-animate.min.js"></script>
+        <script src="material/angular-aria.min.js"></script>
+        <script src="material/angular-messages.min.js"></script>
+        <script src="material/angular-material.min.js"></script>
+        <script src="scripts/index.js"></script>
+
+        <title>Home</title>
+    </head>
+    <body ng-cloak layout="row">
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+            <md-toolbar class="site-content-toolbar">
+                <div class="md-toolbar-tools">
+                    <md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()" hide-gt-md>
+                        <md-icon md-svg-src="svg/ic_menu_white_24px.svg"></md-icon>
+                    </md-button>
+                    <h2 class="md-toolbar-item">Options</h2>
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+
+            <md-content layout-padding>
+				<form name="loginForm">
+					<div layout="column" layout-align="space-around">
+						<h2>Please Log in</h2>
+						<md-input-container>
+							<label>ID Number or e-mail address</label>
+							<input ng-model="userId" name="id" required md-maxlength="13" ng-pattern="/^[0-9]*$/" />
+							<div ng-messages="loginForm.id.$error" ng-hide="showHints">
+								<div ng-message="pattern">Only numbers allowed</div>
+							</div>
+						</md-input-container>
+						<md-input-container>
+							<label>Password</label>
+							<input ng-model="userPassword" name="password" required type="password" />
+							<div ng-messages="loginForm.password.$error"></div>
+						</md-input-container>
+						<md-button class="md-raised md-primary login" ng-click="login()" ng-disabled="loginForm.$invalid">
+							<span style="margin-right: 1em">Login</span>
+							<md-icon md-svg-src="svg/ic_send_white_24px.svg"></md-icon>
+						</md-button>
+						<md-button class="new-account" aria-label="register new account" ng-click="register()">
+							Register new account
+						</md-button>
+					</div>
+				</form>
+
+                <p>
+                    Here be words and buttons to give yee options
+                </p>
+            </md-content>
+        </md-sidenav>
+
+        <ng-view flex></ng-view>
+
+    </body>
+</html>

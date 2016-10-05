@@ -1,40 +1,73 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Register</title>
-    </head>
-    <body>
-        <form name="register">
-            <div layout-gt-sm="row">
-                <md-input-container class="md-block" flex-gt-sm requited>
-                    <label>First name</label>
-                    <input ng-model="user.firstName">
-                </md-input-container>
+<md-dialog aria-label="Map">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Map</h2>
+                <span flex></span>
+                <md-button class="md-icon-button md-toolbar-item" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog" md-svg-src="svg/ic_close_white_24px.svg"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
 
-                <md-input-container class="md-block" flex-gt-sm required>
-                    <label>Last name</label>
-                    <input ng-model="user.lastName">
-                </md-input-container>
-			</div>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <form name="register">
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>First name</label>
+                            <input ng-model="user.firstName" required>
+                        </md-input-container>
 
-			<md-input-container>
-				<label>ID Number</label>
-				<input ng-model="user.id" name="id" required md-maxlength="13" ng-pattern="/^[0-9]{13}$/" />
-				<div ng-messages="register.id.$error" ng-hide="showHints">
-					<div ng-message="pattern">Only 13 numbers allowed</div>
-				</div>
-			</md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Last name</label>
+                            <input ng-model="user.lastName" required>
+                        </md-input-container>
+                    </div>
 
-			<md-input-container>
-				<label>Cellphone number</label>
-				<input type="text" ng-model="user.cellno">
-			</md-input-container>
+                    <md-input-container flex-gt-sm>
+                        <label>ID Number</label>
+                        <input ng-model="user.id" name="id" required md-maxlength="13" ng-pattern="/^[0-9]{13}$/"/>
+                        <div ng-messages="register.id.$error" ng-hide="showHints">
+                            <div ng-message="pattern">Only 13 numbers allowed</div>
+                        </div>
+                    </md-input-container>
 
-			<md-input-container>
-				<label>Email</label>
-				<input type="text" ng-model="user.name">
-			</md-input-container>
-        </form>
-    </body>
-</html>
+                    <md-input-container flex-gt-sm>
+                        <label>Cellphone number</label>
+                        <input type="text" ng-model="user.cellno">
+                    </md-input-container>
+
+                    <md-input-container flex-gt-sm>
+                        <label>E-mail address</label>
+                        <input type="text" ng-model="user.email">
+                    </md-input-container>
+
+                    <md-input-container flex-gt-sm>
+                        <label>Confirm e-mail address</label>
+                        <input type="text" ng-model="user.email2">
+                    </md-input-container>
+
+                    <div ng-include="'address.html'"></div>
+
+                    <div layout="row">
+                        <md-input-container>
+                            <label>Password</label>
+                            <input type="password" ng-model="user.password">
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label>Confirm Password</label>
+                            <input type="password" ng-model="user.password2">
+                        </md-input-container>
+                    </div>
+                    <md-button ng-click="registerUser()" ng-disabled="loginForm.$invalid" class="right">
+                        Submit
+                        <md-icon md-svg-icon="svg/ic_send_black_24px.svg" aria-label="submit"></md-icon>
+                    </md-button>
+                </form>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>
