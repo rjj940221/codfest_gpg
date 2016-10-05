@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<md-input-container class="md-block">
+	<label>Address</label>
+	<input ng-model="$patent.user.address">
+</md-input-container>
+
+<md-input-container class="md-block">
+	<label>Address 2 or Suburb</label>
+	<input ng-model="$parent.user.address2">
+</md-input-container>
+
+<div layout-gt-sm="row">
+	<md-input-container class="md-block" flex-gt-sm>
+		<label>City</label>
+		<input ng-model="$parent.user.city">
+	</md-input-container>
+
+	<md-input-container class="md-block" flex-gt-sm>
+		<label>Postal Code</label>
+		<input name="postalCode" ng-model="$parent.user.postalCode" placeholder="2000" required ng-pattern="/^[0-9]{4}$/" md-maxlength="4">
+
+		<div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+			<div ng-message="required" class="my-message">You must supply a postal code.</div>
+			<div ng-message="pattern" class="my-message">That doesn't look like a valid postal code.
+			</div>
+			<div ng-message="md-maxlength" class="my-message">
+				Don't use the long version silly...we don't need to be that specific...
+			</div>
+		</div>
+	</md-input-container>
+</div>

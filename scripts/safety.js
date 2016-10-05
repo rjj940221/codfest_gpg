@@ -14,15 +14,27 @@ angular.module('safety', ['ngMaterial', 'ngMessages'])
 		if (!$scope.userId) {
 
 		}
+
 		console.log("User: " + $scope.userId + "\nPassword: " + $scope.userPassword);
 		$mdSidenav('left').close();
+		$scope.openMap();
+	};
+
+	$scope.register = function(ev) {
+		$mdSidenav('left').close();
+		console.log("Opening register_form");
+		$mdDialog.show({
+			controller: dialog__,
+			templateUrl: "register_form.html",
+			parent: angular.element(document.body),
+			targetEvent: ev,
+			fullscreen: true
+		});
 	};
 
 	$scope.openMap = function(ev, id) {
-		console.log("Showing info for job of ID: " + id);
-		$scope.selectedJob = id;
 		$mdDialog.show({
-			controller: DialogController,
+			controller: dialog__,
 			templateUrl: "map.html",
 			parent: angular.element(document.body),
 			targetEvent: ev,
@@ -30,7 +42,8 @@ angular.module('safety', ['ngMaterial', 'ngMessages'])
 		});
 	};
 
-	function DialogController($scope, $mdDialog) {
+	function dialog__($scope, $mdDialog) {
+		console.log("Opening dialog");
 		$scope.hide = function() {
 			$mdDialog.hide();
 		};

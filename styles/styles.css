@@ -15,6 +15,7 @@ a:active {
 	margin:		0 auto;
 	height:		100%;
 }
+
 .big-button {
 	position:		relative;
 	min-width:		150px;
@@ -37,21 +38,23 @@ a:active {
 	background-color:	#4CAF50;
 }
 
+.blue {
+	background-color:	#2196F3;
+}
+
 .background-image {
+	display:	block;
+	margin:		auto;
 	width:		80%;
-	position:	relative;
-	left:		50%;
-    top:		50%;
-    transform:	translate(-50%, 5%);
 }
 
 .footer {
-	position:	absolute;
-	width:		100%;
-	bottom:		0;
-	left:		0;
-	text-align:	center;
-	min-height:	15%;
+	position:		absolute;
+	width:			100%;
+	bottom:			0;
+	left:			0;
+	text-align:		center;
+	padding-bottom:	0.25rem;
 }
 
 .badge {
@@ -69,10 +72,10 @@ a:active {
 
 .new-account {
 	font-size: 0.8rem;
-	margin-left: auto;;
+	margin-left: auto;
 }
 
 .login {
-	margin-left: auto;;
+	margin-left: auto;
 	padding: 0 1rem;
 }
