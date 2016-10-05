@@ -1,22 +1,21 @@
-App.controller('AppController', function($scope, $mdDialog) {
-	$scope.status = '    ';
-	$scope.customFullscreen = false;
-
-	$scope.showPrompt = function(ev) {
-		var confirm = $mdDialog.prompt()
-			.title("What is the new item on your todo list?")
-			.placeholder("todo")
-			.ariaLabel("New todo")
-			.targetEvent(ev)
-			.ok("Create new todo")
-			.cancel("Cancel");
-
-		$mdDialog.show(confirm).then(function(result) {
-			$scope.status = result;
-			console.log(result);
-		}, function() {
-			$scope.status = null;
-			console.log(Cancel);
-		});
+function dialog__($scope, $mdDialog, $mdSidenav, userId) {
+	console.log("Opening dialog");
+	$scope.hide = function() {
+		$mdDialog.hide();
 	};
-});
+
+	$scope.cancel = function() {
+		$mdDialog.cancel();
+	};
+
+	$scope.apply = function() {
+		$mdDialog.hide();
+		if (!userId.getUserId()) {
+			$mdSidenav('left').open();
+		}
+	};
+
+	$scope.registerUser = function() {
+		console.log("User registered");
+	};
+}

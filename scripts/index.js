@@ -43,38 +43,6 @@ gpg.controller('home__', function($scope, $timeout, $mdSidenav, $mdDialog, userI
             fullscreen: true
         });
     };
-
-    function apply() {
-        if (!userId.getUserId()) {
-            $mdSidenav('left').open();
-        }
-    }
-
-
-});
-
-function dialog__($scope, $mdDialog) {
-	console.log("Opening dialog");
-	$scope.hide = function() {
-		$mdDialog.hide();
-	};
-
-	$scope.cancel = function() {
-		$mdDialog.cancel();
-	};
-
-	$scope.apply = function() {
-		$mdDialog.hide();
-		apply();
-	};
-
-	$scope.registerUser = function() {
-		console.log("User registered");
-	};
-}
-
-gpg.controller('safety__', function($scope) {
-	document.title = "Community Safety";
 });
 
 gpg.controller('jobs__', function($scope, $mdDialog, userId) {
@@ -150,11 +118,7 @@ gpg.controller('jobs__', function($scope, $mdDialog, userId) {
 		});
 	};
 
-	function apply() {
-		if (!userId.getUserId()) {
-			$mdSidenav('left').open();
-		}
-	}
+
 });
 
 gpg.controller('map__', function($scope) {
@@ -195,4 +159,4 @@ gpg.factory('userId', function() {
 			data.userId = userId;
 		}
 	};
-})
+});
