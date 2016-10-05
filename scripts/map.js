@@ -1,4 +1,10 @@
 var incidents = [];
+var url = "http://owen.exall.za.net/GPG/select_incidents.php";
+$.getJSON(url, function(result) {
+	$.each(result, function(i, field) {
+		incidents.push(field);
+	});
+});
 
 function init_map() {
 	console.log("Opening map");
@@ -8,17 +14,8 @@ function init_map() {
 	});
 }
 
-//Fetch incidents from the database
-function getInfo() {
-		var url = "http://owen.exall.za.net/GPG/select_incidents.php";
-		$.getJSON(url, function(result) {
-			$.each(result, function(i, field) {
-				incidents.push(field);
-			});
-		});
-}
-
 function on_success(position) {
+	getInfo();
 	var lat = position.coords.latitude;
 	var lng = position.coords.longitude;
 
@@ -45,7 +42,7 @@ function on_success(position) {
 
 function show_incidents(map) {
 
-	getInfo();
+
 	// Origins, anchor positions and coordinates of the marker increase in the X
 	// direction to the right and in the Y direction down.
 	var image = {
