@@ -9,28 +9,26 @@
 
 		<script src="material/jquery-3.1.1.min.js"></script>
 		<script src="material/gmaps.js"></script>
-		<script src="scripts/map.js"></script>
         <script src="material/angular.min.js"></script>
         <script src="material/angular-route.min.js"></script>
         <script src="material/angular-animate.min.js"></script>
         <script src="material/angular-aria.min.js"></script>
         <script src="material/angular-messages.min.js"></script>
         <script src="material/angular-material.min.js"></script>
-
 		<script src="scripts/index.js"></script>
 		<script src="scripts/dialog.js" charset="utf-8"></script>
 		<script src="scripts/safety.js" charset="utf-8"></script>
+		<script src="scripts/jobs.js" charset="utf-8"></script>
+		<script src="scripts/create_job.js" charset="utf-8"></script>
+		<script src="scripts/map.js" charset="utf-8"></script>
 
         <title>Home</title>
     </head>
     <body ng-cloak layout="row">
-        <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
-            <md-toolbar class="site-content-toolbar">
+        <md-sidenav class="md-sidenav-right" md-component-id="account" md-whiteframe="4">
+            <md-toolbar class="site-content-toolbar" ng-click="toggleAccount()">
                 <div class="md-toolbar-tools">
-                    <md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()" hide-gt-md>
-                        <md-icon md-svg-src="svg/ic_menu_white_24px.svg"></md-icon>
-                    </md-button>
-                    <h2 class="md-toolbar-item">Options</h2>
+                    <h2 class="md-toolbar-item">Account</h2>
                     <span flex></span>
                 </div>
             </md-toolbar>

@@ -3,13 +3,13 @@ gpg = angular.module('home', ['ngMaterial', 'ngMessages', 'ngRoute']);
 gpg.controller('home__', function($scope, $timeout, $mdSidenav, $mdDialog, userId) {
     document.title = "Home";
 
-    $scope.toggleLeft = function() {
-        $mdSidenav('left').toggle();
+    $scope.toggleAccount = function() {
+        $mdSidenav('account').toggle();
     };
 
-    $scope.close = function() {
+    $scope.closeAccount = function() {
         console.log("Nav close");
-        $mdSidenav('left').close();
+        $mdSidenav('account').close();
     };
 
     $scope.login = function() {
@@ -18,12 +18,12 @@ gpg.controller('home__', function($scope, $timeout, $mdSidenav, $mdDialog, userI
         }
 
         console.log("User: " + $scope.userId + "\nPassword: " + $scope.userPassword);
-        $mdSidenav('left').close();
+        $mdSidenav('account').close();
         $scope.openMap();
     };
 
     $scope.register = function(ev) {
-        $mdSidenav('left').close();
+        $mdSidenav('account').close();
         console.log("Opening register_form");
         $mdDialog.show({
             controller: dialog__,
@@ -33,96 +33,6 @@ gpg.controller('home__', function($scope, $timeout, $mdSidenav, $mdDialog, userI
             fullscreen: true
         });
     };
-
-    $scope.openMap = function(ev, id) {
-        $mdDialog.show({
-            controller: dialog__,
-            templateUrl: "map.html",
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            fullscreen: true
-        });
-    };
-});
-
-gpg.controller('jobs__', function($scope, $mdDialog, userId) {
-	document.title = "Jobs";
-	$scope.jobListings = [
-		{
-			id: 0,
-			title: "Data Analyst",
-			company: "Discovey",
-			location: "Sandton, Gauteng",
-			created: "7 hours ago",
-			recruiter: true
-		},
-		{
-			id: 1,
-			title: "Invoice Clerk",
-			company: "Creativ Crew",
-			location: "Sandton, Gauteng",
-			created: "23 hours ago",
-			recruiter: false
-		},
-		{
-			id: 2,
-			title: "Administrative Position",
-			company: "University Online",
-			location: "Sandton, Gauteng",
-			created: "1 day ago",
-			recruiter: false
-		},
-		{
-			id: 0,
-			title: "Data Analyst",
-			company: "Discovey",
-			location: "Sandton, Gauteng",
-			created: "7 hours ago",
-			recruiter: false
-		},
-		{
-			id: 1,
-			title: "Invoice Clerk",
-			company: "Creativ Crew",
-			location: "Sandton, Gauteng",
-			created: "23 hours ago",
-			recruiter: true
-		},
-		{
-			id: 2,
-			title: "Administrative Position",
-			company: "University Online",
-			location: "Sandton, Gauteng",
-			created: "1 day ago",
-			recruiter: false
-		},
-		{
-			id: 3,
-			title: "Senior Sales Account Manager ",
-			company: "Verifone",
-			location: "Johannesburg, Gauteng",
-			created: "1 day ago",
-			recruiter: false
-		}
-	];
-
-	$scope.showInfo = function(ev, id) {
-		console.log("Showing info for job of ID: " + id);
-		$scope.selectedJob = id;
-		$mdDialog.show({
-			controller: dialog__,
-			templateUrl: "jobs_info.html",
-			parent: angular.element(document.body),
-			targetEvent: ev,
-			fullscreen: true
-		});
-	};
-
-
-});
-
-gpg.controller('map__', function($scope) {
-	document.title = "Map";
 });
 
 gpg.config(function($routeProvider) {
@@ -142,6 +52,10 @@ gpg.config(function($routeProvider) {
 		.when('/map', {
 			templateUrl: 'map.html',
 			controller: 'map__'
+		})
+		.when('/create_job', {
+			templateUrl: 'create_job.html',
+			controller: 'create_job__'
 		});
 });
 

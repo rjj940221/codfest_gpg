@@ -1,3 +1,7 @@
+gpg.controller('map__', function($scope) {
+	document.title = "Map";
+});
+
 var incidents = [];
 var url = "http://owen.exall.za.net/GPG/select_incidents.php";
 $.getJSON(url, function(result) {
@@ -54,8 +58,6 @@ function show_incidents(map) {
 		// The anchor for this image is the base of the flagpole at (0, 32).
 		anchor: new google.maps.Point(14, 40)
 	};
-	console.log(incidents);
-	console.log(incidents.length);
 	incidents.forEach(function(item) {
 		console.log(item);
 		var crimes = new google.maps.Marker({
