@@ -10,7 +10,7 @@ gpg.controller('jobs__', function($scope, $mdDialog, $mdSidenav, userId) {
     };
 	$scope.jobListings = [
 		{
-			id: 0,
+			id: 6,
 			title: "Data Analyst",
 			company: "Discovey",
 			location: "Sandton, Gauteng",
@@ -18,7 +18,7 @@ gpg.controller('jobs__', function($scope, $mdDialog, $mdSidenav, userId) {
 			recruiter: true
 		},
 		{
-			id: 1,
+			id: 7,
 			title: "Invoice Clerk",
 			company: "Creativ Crew",
 			location: "Sandton, Gauteng",
@@ -26,7 +26,7 @@ gpg.controller('jobs__', function($scope, $mdDialog, $mdSidenav, userId) {
 			recruiter: false
 		},
 		{
-			id: 2,
+			id: 8,
 			title: "Administrative Position",
 			company: "University Online",
 			location: "Sandton, Gauteng",
@@ -34,7 +34,7 @@ gpg.controller('jobs__', function($scope, $mdDialog, $mdSidenav, userId) {
 			recruiter: false
 		},
 		{
-			id: 0,
+			id: 6,
 			title: "Data Analyst",
 			company: "Discovey",
 			location: "Sandton, Gauteng",
@@ -42,7 +42,7 @@ gpg.controller('jobs__', function($scope, $mdDialog, $mdSidenav, userId) {
 			recruiter: false
 		},
 		{
-			id: 1,
+			id: 7,
 			title: "Invoice Clerk",
 			company: "Creativ Crew",
 			location: "Sandton, Gauteng",
@@ -50,7 +50,7 @@ gpg.controller('jobs__', function($scope, $mdDialog, $mdSidenav, userId) {
 			recruiter: true
 		},
 		{
-			id: 2,
+			id: 8,
 			title: "Administrative Position",
 			company: "University Online",
 			location: "Sandton, Gauteng",
@@ -58,7 +58,7 @@ gpg.controller('jobs__', function($scope, $mdDialog, $mdSidenav, userId) {
 			recruiter: false
 		},
 		{
-			id: 3,
+			id: 6,
 			title: "Senior Sales Account Manager ",
 			company: "Verifone",
 			location: "Johannesburg, Gauteng",
@@ -71,6 +71,7 @@ gpg.controller('jobs__', function($scope, $mdDialog, $mdSidenav, userId) {
 		console.log("Showing info for job of ID: " + id);
 		$scope.selectedJob = id;
 		$mdDialog.show({
+			locals: {job_id: id, user_id: userId.getUserId()},
 			controller: dialog__,
 			templateUrl: "jobs_info.html",
 			parent: angular.element(document.body),
