@@ -51,11 +51,11 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
             url: 'http://owen.exall.za.net/gpg/authorize.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: login
-        }
+        };
         var user = [];
         $http(request).then(function successCallback(response, ev) {
             console.log(response);
-            if (response.data != "false" && response.data != ""){
+            if (response.data != "false" && response.data !== ""){
                 $scope.user = angular.fromJson(response.data);
                 $sessionStorage.user_id = $scope.user.id;
                 $sessionStorage.user_name = $scope.user.first_name;
