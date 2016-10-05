@@ -2,39 +2,33 @@
 <div layout="column" style="height: 100%">
 	<div>
 		<md-toolbar>
-		    <div class="md-toolbar-tools">
-		        <h2>Map</h2>
-		        <span flex></span>
-
-
-						<md-button style="margin: auto" class="md-raised md-toolbar-item" ng-click="gimme_heat()">
-							Heatmap
-		        </md-button>
-						<md-button style="margin: auto" class="md-raised md-toolbar-item" ng-click="showme_crimes()">
-							Crimes
-						</md-button>
-						<md-button style="margin: auto" class="md-raised md-toolbar-item" ng-click="showme_saps()">
-							SAPS
-						</md-button>
-
-		        <md-button class="md-icon-button md-toolbar-item" ng-click="$window.history.back()">
-		            <md-icon aria-label="Close dialog" md-svg-src="svg/ic_close_white_24px.svg"></md-icon>
-		        </md-button>
-
-
-
-
-		    </div>
+			<div class="md-toolbar-tools">
+				<div layout="row" layout-align="center center">
+					<a href="#/"><h1 class="md-toolbar-item">Home</h1></a>
+					<md-icon md-svg-icon="svg/ic_chevron_right_white_24px.svg" style="color: inherit" aria-hidden="true"></md-icon>
+				</div>
+				<h2>Map</h2>
+				<span flex></span>
+				<md-button style="margin: auto" class="md-raised md-toolbar-item" ng-click="gimme_heat()">
+					Heatmap
+				</md-button>
+				<md-button style="margin: auto" class="md-raised md-toolbar-item" ng-click="showme_crimes()">
+					Crimes
+				</md-button>
+				<md-button style="margin: auto" class="md-raised md-toolbar-item" ng-click="showme_saps()">
+					SAPS
+				</md-button>
+				<md-button class="md-icon-button md-toolbar-item" ng-click="$window.history.back()">
+					<md-icon aria-label="Close dialog" md-svg-src="svg/ic_close_white_24px.svg"></md-icon>
+				</md-button>
+			</div>
 		</md-toolbar>
 	</div>
-
 	<div flex layout-padding style="height: 100%; width: 100%">
-			<div id="map" style="height: 100%; padding: 0"></div>
-		    <script type="text/javascript">
-		        console.log("init_map");
-						init_map();
-		    </script>
+		<div id="map" style="height: 100%; padding: 0"></div>
+		<script type="text/javascript">
+			console.log("init_map");
+			init_map();
+		</script>
 	</div>
-
-
 </div>

@@ -1,22 +1,82 @@
-App.controller('AppController', function($scope, $mdDialog) {
-	$scope.status = '    ';
-	$scope.customFullscreen = false;
+function dialog__($http, $scope, $mdDialog, $mdSidenav, $sessionStorage) {
+	console.log("Opening dialog");
+	$scope.hide = function() {
+		$mdDialog.hide();
+	};
 
-	$scope.showPrompt = function(ev) {
-		var confirm = $mdDialog.prompt()
-			.title("What is the new item on your todo list?")
-			.placeholder("todo")
-			.ariaLabel("New todo")
-			.targetEvent(ev)
-			.ok("Create new todo")
-			.cancel("Cancel");
+	$scope.cancel = function() {
+		$mdDialog.cancel();
+	};
 
-		$mdDialog.show(confirm).then(function(result) {
-			$scope.status = result;
-			console.log(result);
-		}, function() {
-			$scope.status = null;
-			console.log(Cancel);
+	$scope.apply = function() {
+		$mdDialog.hide();
+		if (!$sessionStorage.user_id) {
+			$mdSidenav('account').open();
+		}
+	};
+
+	$scope.registerUser = function () {
+		console.log("Registering User");
+		$scope.isLoading = true;
+		if ($scope.user.email != $scope.user.email2) {
+			alert("Your e-mail IDs do not match.");
+			return ;
+		}
+		if ($scope.user.password != $scope.user.password2)
+		{
+			alert("Your passwords do not match");
+			return ;
+		}
+		console.log($scope);
+		var n_user = {
+			insert: "yes",
+			name: $scope.user.firstName,
+			surname: $scope.user.lastName,
+			id: $scope.user.id,
+			cellno: $scope.user.cellno,
+			email: $scope.user.email,
+			password: $scope.user.password,
+			addr_1: $scope.user.address,
+			addr_2: $scope.user.address2,
+			city: $scope.user.city,
+			postal_code: $scope.user.postalCode
+		};
+		console.log(n_user);
+		var user = [];
+		$http({
+			method: 'POST',
+			url: 'http://owen.exall.za.net/gpg/register_user.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			data: n_user
+		}).then(function successCallback(response, ev) {
+			console.log(response);
+			if (response.data === "false") {
+				console.log("Failed Registering.");
+				alert("Sorry, we had an error.");
+				//Failed Dialog Here
+			} else if (response.data === "User_Exists") {
+				console.log("User already exits");
+				alert("User already exists.");
+			}else {
+				$scope.user = angular.fromJson(response.data);
+				$sessionStorage.user_id = $scope.user.id;
+				$sessionStorage.user_name = $scope.user.first_name;
+				$sessionStorage.rights = $scope.user.admin_rights;
+				console.log($scope.user);
+				console.log("Successful Registering.");
+				$scope.isLoading = false;
+				$mdDialog.show({
+					controller: dialog__,
+					templateUrl: "dialogs/register_success.html",
+					parent: angular.element(document.body),
+					targetEvent: ev,
+					fullscreen: false
+				});
+			}
+			console.log(response);
+		}, function errorCallback(response) {
+			console.log("Error");
+			console.log(response);
 		});
 	};
-});
+}

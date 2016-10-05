@@ -1,6 +1,13 @@
-angular.module('jobs', ['ngMaterial', 'ngMessages'])
+gpg.controller('jobs__', function($scope, $mdDialog, $mdSidenav, userId) {
+	document.title = "Jobs";
 
-.controller('jobs__', function ($scope, $timeout, $mdSidenav, $mdDialog) {
+	$scope.toggleLeft = function() {
+        $mdSidenav('left').toggle();
+    };
+
+    $scope.close = function() {
+        $mdSidenav('left').close();
+    };
 	$scope.jobListings = [
 		{
 			id: 0,
@@ -60,54 +67,15 @@ angular.module('jobs', ['ngMaterial', 'ngMessages'])
 		}
 	];
 
-	$scope.toggleLeft = function() {
-		$mdSidenav('left').toggle();
-	};
-
-	$scope.close = function() {
-		console.log("Nav close");
-		$mdSidenav('left').close();
-	};
-
-	$scope.login = function() {
-		if (!$scope.userId) {
-
-		}
-		console.log("User: " + $scope.userId + "\nPassword: " + $scope.userPassword);
-		$mdSidenav('left').close();
-	};
-
 	$scope.showInfo = function(ev, id) {
 		console.log("Showing info for job of ID: " + id);
 		$scope.selectedJob = id;
 		$mdDialog.show({
-			controller: DialogController,
+			controller: dialog__,
 			templateUrl: "jobs_info.html",
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			fullscreen: true
 		});
 	};
-
-	function DialogController($scope, $mdDialog) {
-		$scope.hide = function() {
-			$mdDialog.hide();
-		};
-
-		$scope.cancel = function() {
-			$mdDialog.cancel();
-		};
-
-		$scope.apply = function() {
-			$mdDialog.hide();
-			apply();
-		};
-	}
-
-	function apply() {
-		if (!$scope.userId) {
-			$mdSidenav('left').open();
-		}
-	}
-
 });
