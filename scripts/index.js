@@ -105,7 +105,8 @@ gpg.controller('map__', function($scope) {
   	});
     }
     else {
-      saps_mark.setMap(null);
+      for(i = 0 ; i< saps_mark.length; i++)
+      saps_mark[i].setVisible(false);
     }
   };
 
@@ -126,13 +127,12 @@ gpg.controller('map__', function($scope) {
       });
     }
     else {
-      incident_mark.forEach(function(marker) {
-        incident_mark.setMap(null);
-      });
+        for(i = 0 ; i< incident_mark.length; i++)
+        incident_mark[i].setVisible(false);
+      }
+    };
 //markers = [];
   //    incident_mark.setMap(null);
-    }
-  };
 	document.title = "Map";
 });
 
