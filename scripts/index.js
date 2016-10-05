@@ -80,6 +80,44 @@ gpg.controller('jobs__', function($scope) {
 });
 
 gpg.controller('map__', function($scope) {
+  $scope.gimme_heat = function(){
+    heatmap.setMap(heatmap.getMap() ? null : map);
+  };
+  $scope.showme_crimes = function(){
+    console.log("Initiating incident loop");
+
+    if (marker_on === 1)
+    {
+    //  setMapOnAll(map);
+    }
+
+    marker_on = marker_on ? 0 : 1;
+
+    incidents.forEach(function(item) {
+      console.log(item);
+    //crimes.visible = false;
+    //  item.setVisible(true ? false : true);
+    if (marker_on === 1)
+    {
+      console.log("marker1");
+        crimes = new google.maps.Marker({
+        position: new google.maps.LatLng(item.latitude, item.longitude),
+        map: map,
+        icon: image,
+        title: item.event,
+        zIndex: parseInt(item.id)
+      });
+    }
+    else {
+      console.log("marker 0");
+      crimes.setVisible(false);
+    }
+
+    });
+    console.log(crimes.length);
+    //  setMapOnAll(map);
+  };
+
 	document.title = "Map";
 });
 
