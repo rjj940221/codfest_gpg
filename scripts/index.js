@@ -48,7 +48,7 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
         console.log(login); //change the url below to the one on the website
         var request = {
             method: 'POST',
-            url: '../PHP/authorize.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+            url: 'http://owen.exall.za.net/gpg/authorize.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: login
         }
