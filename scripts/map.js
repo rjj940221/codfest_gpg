@@ -1,4 +1,10 @@
 var incidents = [];
+var url = "http://owen.exall.za.net/GPG/select_incidents.php";
+$.getJSON(url, function(result) {
+	$.each(result, function(i, field) {
+		incidents.push(field);
+	});
+});
 var my_location = new google.maps.LatLng(-26.114779, 27.952908);
 var map_options = {
 	zoom: 13,
@@ -13,7 +19,7 @@ var map_options = {
 
 function init_map() {
 	console.log("Opening map");
-	getInfo();
+	//getInfo();
 	navigator.geolocation.getCurrentPosition(on_success, on_error, {
 		timeout: 1000});
 }
@@ -35,15 +41,6 @@ function on_success(position){
 function on_error(error) {
 	console.log("GPS activation failure!");
 	draw_map();
-}
-
-function getInfo() {
-		var url = "http://owen.exall.za.net/GPG/select_incidents.php";
-		$.getJSON(url, function(result) {
-			$.each(result, function(i, field) {
-				incidents.push(field);
-			});
-		});
 }
 
 function show_incidents(map) {
