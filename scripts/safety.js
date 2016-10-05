@@ -1,6 +1,6 @@
 angular.module('safety', ['ngMaterial', 'ngMessages'])
 
-.controller('safety__', function ($scope, $timeout, $mdSidenav, $mdDialog) {
+.controller('safety__', function ($scope, $timeout, $mdSidenav, $mdDialog, $http) {
 	$scope.toggleLeft = function() {
 		$mdSidenav('left').toggle();
 	};
