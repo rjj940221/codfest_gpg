@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<md-dialog aria-label="Register Form">
+<md-dialog aria-label="Register User">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>Resiter Form</h2>
+            <h2>Register User</h2>
             <span flex></span>
             <md-button class="md-icon-button md-toolbar-item" ng-click="cancel()">
                 <md-icon aria-label="Close dialog" md-svg-src="svg/ic_close_white_24px.svg"></md-icon>
@@ -40,12 +40,12 @@
 
                 <md-input-container flex-gt-sm>
                     <label>E-mail address</label>
-                    <input type="text" ng-model="user.email">
+                    <input type="text" ng-model="user.email" required>
                 </md-input-container>
 
                 <md-input-container flex-gt-sm>
                     <label>Confirm e-mail address</label>
-                    <input type="text" ng-model="user.email2">
+                    <input type="text" ng-model="user.email2" required>
                 </md-input-container>
 
                 <div ng-include="'address.html'"></div>
@@ -53,12 +53,12 @@
                 <div layout="row">
                     <md-input-container>
                         <label>Password</label>
-                        <input type="password" ng-model="user.password">
+                        <input type="password" ng-model="user.password" required>
                     </md-input-container>
 
                     <md-input-container>
                         <label>Confirm Password</label>
-                        <input type="password" ng-model="user.password2">
+                        <input type="password" ng-model="user.password2" required>
                     </md-input-container>
                 </div>
                 <md-button ng-click="registerUser()" ng-disabled="register.$invalid" class="right">

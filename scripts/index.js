@@ -68,7 +68,7 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
                 $scope.isLoading = false;
                 $mdDialog.show({
                     controller: dialog__,
-                    templateUrl: "invalidDialogs/invalid_login.html",
+                    templateUrl: "dialogs/invalid_login.html",
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     fullscreen: false
