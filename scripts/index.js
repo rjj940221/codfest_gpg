@@ -81,6 +81,7 @@ gpg.controller('jobs__', function($scope) {
 
 gpg.controller('map__', function($scope) {
   $scope.gimme_heat = function(){
+    load_heatmap();
     heatmap.setMap(heatmap.getMap() ? null : map);
   };
   $scope.showme_crimes = function(){
@@ -97,6 +98,7 @@ gpg.controller('map__', function($scope) {
       console.log(item);
     //crimes.visible = false;
     //  item.setVisible(true ? false : true);
+
     if (marker_on === 1)
     {
       console.log("marker1");
@@ -108,9 +110,23 @@ gpg.controller('map__', function($scope) {
         zIndex: parseInt(item.id)
       });
     }
+
     else {
+      /*
       console.log("marker 0");
       crimes.setVisible(false);
+      */
+      console.log("marker1");
+        crimes = new google.maps.Marker({
+        position: new google.maps.LatLng(item.latitude, item.longitude),
+        map: null,
+        icon: image,
+        title: item.event,
+        zIndex: parseInt(item.id)
+      });
+
+
+
     }
 
     });
