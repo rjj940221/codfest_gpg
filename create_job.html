@@ -30,16 +30,33 @@
 			<h2>Responsibilities</h2>
 			<md-list>
 				<md-list-item ng-repeat="item in resps" layout="row">
-					<md-input-container style="width: 100%">
+					<md-input-container style="width: 100%" ng-blur="AddItem">
 						<label>Responsibity</label>
-						<textarea type="text" ng-model="newJob.resp" flex></textarea>
+						<textarea type="text" ng-model="item.text" flex></textarea>
 					</md-input-container>
 					<span flex></span>
 					<md-button ng-if="$last" class="md-icon-button">
-						<md-icon md-svg-icon="svg/ic_add_black_24px.svg" aria-label="Add new" ng-click="addItem(item.newJob.resp)"></md-icon>
+						<md-icon md-svg-icon="svg/ic_add_black_24px.svg" aria-label="Add new" ng-click="newItemResp()"></md-icon>
 					</md-button>
 					<md-button ng-if="!$last" class="md-icon-button">
-						<md-icon md-svg-icon="svg/ic_delete_black_24px.svg" aria-label="Delete" ng-click="deleteItem($index)"></md-icon>
+						<md-icon md-svg-icon="svg/ic_delete_black_24px.svg" aria-label="Delete" ng-click="deleteItemResp($index)"></md-icon>
+					</md-button>
+				</md-list-item>
+			</md-list>
+			<md-divider></md-divider>
+			<h2>Qualifications</h2>
+			<md-list>
+				<md-list-item ng-repeat="item in qualifications" layout="row">
+					<md-input-container style="width: 100%" ng-blur="AddItem">
+						<label>Qualification</label>
+						<textarea type="text" ng-model="item.text" flex></textarea>
+					</md-input-container>
+					<span flex></span>
+					<md-button ng-if="$last" class="md-icon-button">
+						<md-icon md-svg-icon="svg/ic_add_black_24px.svg" aria-label="Add new" ng-click="newItemQual()"></md-icon>
+					</md-button>
+					<md-button ng-if="!$last" class="md-icon-button">
+						<md-icon md-svg-icon="svg/ic_delete_black_24px.svg" aria-label="Delete" ng-click="deleteItemQual($index)"></md-icon>
 					</md-button>
 				</md-list-item>
 			</md-list>
