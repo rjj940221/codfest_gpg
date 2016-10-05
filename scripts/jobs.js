@@ -75,6 +75,7 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
 					$scope.job_info = job;
 					console.log("description: "+$scope.job_info.description);
 					$mdDialog.show({
+						locals: { user_id: userId.getUserId()},
 						controller: dialog__,
 						templateUrl: "jobs_info.html",
 						parent: angular.element(document.body),
@@ -192,11 +193,11 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
         $mdSidenav('left').close();
     };
 
-
 	/*$scope.showInfo = function(ev, id) {
 		console.log("Showing info for job of ID: " + id);
 		$scope.selectedJob = id;
 		$mdDialog.show({
+			locals: {job_id: id, user_id: userId.getUserId()},
 			controller: dialog__,
 			templateUrl: "jobs_info.html",
 			parent: angular.element(document.body),

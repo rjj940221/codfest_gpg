@@ -65,6 +65,12 @@
 							Register new account
 						</md-button>
 					</div>
+					<div layout="column" layout-align="space-around" ng-hide="!user.id">
+						<h2>Welcome, {{user.first_name}}</h2>
+						<md-button class="md-raised md-primary logout" ng-click="logout()">
+							Sign Out
+						</md-button>
+					</div>
 				</form>
                 <p>
                     Here be words and buttons to give yee options
