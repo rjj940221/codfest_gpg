@@ -46,7 +46,7 @@
 			<md-divider></md-divider>
 			<h2>Qualifications</h2>
 			<md-list>
-				<md-list-item ng-repeat="item in qualifications" layout="row">
+				<md-list-item ng-repeat="item in quals" layout="row">
 					<md-input-container style="width: 100%" ng-blur="AddItem">
 						<label>Qualification</label>
 						<textarea type="text" ng-model="item.text" flex></textarea>
@@ -60,6 +60,7 @@
 					</md-button>
 				</md-list-item>
 			</md-list>
+			
 		</form>
 	</md-content>
 </div>
