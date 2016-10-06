@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<md-dialog aria-label="Jobs info">
+	<form ng-cloak>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Job Information</h2>
+				<span flex></span>
+				<md-button class="md-icon-button md-toolbar-item" ng-click="cancel()">
+					<md-icon aria-label="Close dialog" md-svg-src="svg/ic_close_white_24px.svg"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+
+		<md-dialog-content>
+			<div class="md-dialog-content">
+				<p>
+					Here be some stuff giving yee information
+				</p>
+			</div>
+		</md-dialog-content>
+
+		<md-dialog-actions layout="row">
+			<span flex></span>
+			<md-button ng-click="cancel()">
+				Cancel
+			</md-button>
+			<md-button ng-click="apply()">
+				Apply
+			</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>
