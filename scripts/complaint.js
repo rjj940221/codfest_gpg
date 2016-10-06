@@ -21,9 +21,8 @@ gpg.controller('complaint__', function($scope, $filter, $http, $sessionStorage, 
     	});
     console.log($scope.stations);
 
-
 	$scope.submit = function () {
-		if ($sessionStorage.user_id == undefined || !sessionStorage) {
+		if ($sessionStorage.user_id === undefined || !sessionStorage) {
 			$mdSidenav('account').open();
 			return ;
 		}

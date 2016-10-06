@@ -19,7 +19,7 @@
             <md-button class="md-raised" aria-label="Current Location" ng-click="get_my_loc()" style="margin-left: auto; margin-right: 0.5rem">
                 Get Location
             </md-button>
-            <md-button class="md-raised" href="" aria-label="Submit" ng-click="null" style="max-width: 200px">
+            <md-button class="md-raised" href="" aria-label="Submit" ng-click="null" style="max-width: 200px; margin-right: auto" >
                 Submit
             </md-button>
             </h2>
@@ -27,17 +27,15 @@
                 <div id="map" style="height: 90%; width: 90%; padding: 0; margin: auto"></div>
                 <script type="text/javascript">
                     console.log("init_map");
-                                        init_map();
+                      init_map();
                     //Add listener
-                    google.maps.event.addListener(marker, "click", function (event) {
+                      google.maps.event.addListener(marker, "click", function (event) {
                       var latitude = event.latLng.lat();
                       var longitude = event.latLng.lng();
                       console.log( latitude + ', ' + longitude );
                     }); //end addListener
-
                 </script>
             </div>
-
         </div>
     </div>
 </md-content>
