@@ -25,6 +25,10 @@ a, a:link, a:visited, a:hover {
     background-color: #FF9800;
 }
 
+.deep-orange {
+	background-color:	#FF5722;
+}
+
 .green {
     background-color: #4CAF50;
 }
