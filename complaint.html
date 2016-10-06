@@ -15,32 +15,32 @@
 	</md-toolbar>
 
 	<md-content flex layout-padding>
-		<form name="new_job" layout="column">
-			<md-input-container style="margin-bottom: 0">
-				<label>Job Title</label>
-				<input ng-model="newJob.title" name="title" required />
-			</md-input-container>
+		<form name="new_complaint" layout="column">
 			<md-input-container style="margin: 0">
-				<label>Discription (HTML will be processed)</label>
-				<textarea ng-model="newJob.discription" name="discription" required ng-maxlength="500" />
+				<label>Complaint Description</label>
+				<textarea ng-model="description" name="discription" required ng-maxlength="500"/>
 			</md-input-container>
 			<md-divider></md-divider>
-			<h2>Responsibilities</h2>
-			<md-list>
-				<md-list-item ng-repeat="item in resps" layout="row">
-					<md-input-container style="width: 100%" ng-blur="AddItem">
-						<label>Responsibity</label>
-						<textarea type="text" ng-model="item.text" flex></textarea>
-					</md-input-container>
-					<span flex></span>
-					<md-button ng-if="$last" class="md-icon-button">
-						<md-icon md-svg-icon="svg/ic_add_black_24px.svg" aria-label="Add new" ng-click="newItemResp()"></md-icon>
-					</md-button>
-					<md-button ng-if="!$last" class="md-icon-button">
-						<md-icon md-svg-icon="svg/ic_delete_black_24px.svg" aria-label="Delete" ng-click="deleteItemResp($index)"></md-icon>
-					</md-button>
-				</md-list-item>
-			</md-list>
+
+			 <md-input-container>
+	          <label>Police Stations</label>
+		        <md-select ng-model="userStation" required>
+		            <md-option><em>None</em></md-option>
+		            <md-option ng-repeat="station in stations" ng-value="station.ID">
+		              	{{station.Name}}
+		            </md-option>
+		        </md-select>
+	        </md-input-container>
+
+			<md-input-container style="margin: 0">
+				<label>Police Officer Involved</label>
+				<textarea type="text" ng-model="police_officer" flex></textarea>
+			</md-input-container>
+
+			<md-button class="md-raised md-primary login" ng-click="submit()" ng-disabled="new_complaint.$invalid">
+				<span style="margin-right: 1em">Submit</span>
+				<md-icon md-svg-src="svg/ic_send_white_24px.svg"></md-icon>
+			</md-button>
 		</form>
 	</md-content>
 </div>
