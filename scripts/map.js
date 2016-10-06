@@ -19,7 +19,7 @@ gpg.controller('map__', function($scope) {
                 var saps = new google.maps.Marker({
                     position: new google.maps.LatLng(item.latitude, item.longitude),
                     map: map,
-                    icon: "svg/ic_saps_black_40px.svg",
+                    icon: image_saps,
                     title: item.name,
                     zIndex: parseInt(item.id)
                 });
@@ -107,6 +107,13 @@ $.getJSON(url_saps, function(result) {
 // Image used for crime pinpointing
 var image = {
 	url: 'svg/ic_danger_location_black_24px.svg',
+	size: new google.maps.Size(40, 40),
+	origin: new google.maps.Point(0, 0),
+	anchor: new google.maps.Point(14, 40)
+};
+
+var image_saps = {
+	url: 'svg/ic_saps_back_40px.svg',
 	size: new google.maps.Size(40, 40),
 	origin: new google.maps.Point(0, 0),
 	anchor: new google.maps.Point(14, 40)
