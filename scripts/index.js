@@ -97,7 +97,7 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
             console.log("Opening register_form");
             $mdDialog.show({
                 controller: dialog__,
-                locals: {job_id: undefined, user_id: undefined},
+                locals: { job: undefined, user_id: undefined},
                 templateUrl: "register_form.html",
                 parent: angular.element(document.body),
                 targetEvent: ev,
