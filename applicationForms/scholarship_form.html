@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<div layout="column">
+    <md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
+        <div class="md-toolbar-tools">
+            <div layout="row" layout-align="center center">
+                <a href="#/comm_safety"><h1 class="md-toolbar-item">Forms</h1></a>
+                <md-icon md-svg-icon="svg/ic_chevron_right_white_24px.svg" style="color: inherit" aria-hidden="true"></md-icon>
+                <a href="#/complaint"><h1 class="md-toolbar-item">Scholarship</h1></a>
+            </div>
+            <span flex></span>
+            <md-button class="md-icon-button md-toolbar-item" aria-label="Account" ng-click="toggleAccount()">
+                <md-icon md-svg-src="svg/ic_account_circle_white_24px.svg"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-content flex layout-padding>
+        <h1>Social Work Scholarship</h1>
+        <form name="scholarship" layout="column">
+            <h2>Part A: Personal Information</h2>
+            <md-input-container>
+                <label>Surname</label>
+                <textarea ng-model="surname" required required flex />
+            </md-input-container>
+
+            <md-input-container style="margin: 0">
+                <label>Names</label>
+                <textarea type="text" ng-model="name" required flex></textarea>
+            </md-input-container>
+
+            <md-input-container style="margin: 0">
+                <label>ID Number</label>
+                <textarea type="text" ng-model="id" required flex></textarea>
+            </md-input-container>
+
+            <md-input-container style="margin: 0">
+                <label>Nationality</label>
+                <textarea type="text" ng-model="nationality" required flex></textarea>
+            </md-input-container>
+
+            <md-input-container style="margin: 0">
+                <label>Racial Group</label>
+                <textarea type="text" ng-model="racialGroup" required flex></textarea>
+            </md-input-container>
+
+            <md-input-container style="margin: 0">
+                <label>Residential / Home Address</label>
+                <textarea type="text" ng-model="address" required flex></textarea>
+            </md-input-container>
+
+            <md-input-container style="margin: 0">
+                <label>Postal Address</label>
+                <textarea type="text" ng-model="postalAddress" required flex></textarea>
+            </md-input-container>
+
+            <h2>Location</h2>
+
+            <md-input-container style="margin: 0">
+                <label>Province</label>
+                <textarea type="text" ng-model="province" required flex></textarea>
+            </md-input-container>
+
+            <md-input-container style="margin: 0">
+                <label>District / Region</label>
+                <textarea type="text" ng-model="district" required flex></textarea>
+            </md-input-container>
+
+            <md-input-container style="margin: 0">
+                <label>Local Municipality</label>
+                <textarea type="text" ng-model="municipality" required flex></textarea>
+            </md-input-container>
+
+            <md-input-container style="margin: 0">
+                <label>Ward Number</label>
+                <textarea type="text" ng-model="ward" flex></textarea>
+            </md-input-container>
+
+            <h2>Contact Details</h2>
+
+            <md-input-container style="margin: 0">
+                <label>Telephone</label>
+                <input type="input" ng-model="telephone" ng-pattern="/^[0-9]{10}$/" flex></textarea>
+                <div ng-messages="scholarship.telephone.$error" ng-hide="showHints">
+                    <div ng-message="pattern">Only 10 numbers allowed</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container style="margin: 0">
+                <label>Cellphone</label>
+                <input type="input" ng-model="cellphone" required flex></textarea>            </md-input-container>
+            
+            <md-input-container style="margin: 0">
+                <label>E-mail Address</label>
+                <textarea type="email" ng-model="email" flex required></textarea>
+            </md-input-container>
+
+            <md-checkbox ng-model="childCare" aria-label="Checkbox 1">
+                Are you currently in a child and youth care centre?
+            </md-checkbox>
+
+            <md-checkbox ng-model="disability" aria-label="Checkbox 1">
+                Do you have a disability?
+            </md-checkbox>
+            <md-input-container style="margin: 0" ng-hide="!disability">
+                <label>Disability</label>
+                <textarea type="text" ng-model="disabilityDetail" flex></textarea>
+            </md-input-container>
+
+            <h2>Part B: Educational Details</h2>
+            <md-checkbox ng-model="uniAdmission" aria-label="Checkbox 1">
+                Have you applied for admission at university?
+            </md-checkbox>
+
+            <md-checkbox ng-model="uniStudy" aria-label="Checkbox 1">
+                Are you already studying at a institution of higher education?
+            </md-checkbox>
+            <div ng-hide="!uniStudy">
+                <md-input-container style="margin: 0">
+                    <label>Name of Institution</label>
+                    <textarea type="text" ng-model="institution" flex required="uniStudy"></textarea>
+                </md-input-container>
+                <md-input-container style="margin: 0">
+                    <label>Degree</label>
+                    <textarea type="text" ng-model="degree" flex required="uniStudy"></textarea>
+                </md-input-container>
+                <md-input-container style="margin: 0">
+                    <label>Current Year of study?</label>
+                    <textarea type="text" ng-model="currYear" flex required="uniStudy"></textarea>
+                </md-input-container>
+            </div>
+            <md-checkbox ng-model="uniResidence" aria-label="Checkbox 1">
+                Have you applied for official University Residence?
+            </md-checkbox>
+
+            <h2>Part C: Gaurdian Information</h2>
+
+            <md-input-container>
+                <label>Surname</label>
+                <textarea type="text" ng-model="gauSurname" required flex />
+            </md-input-container>
+
+            <md-input-container style="margin: 0">
+                <label>Names</label>
+                <textarea type="text" ng-model="gauName" required flex></textarea>
+            </md-input-container>
+
+            <md-input-container style="margin: 0">
+                <label>ID Number</label>
+                <textarea type="text" ng-model="gauId" required flex></textarea>
+            </md-input-container>
+            
+            <md-input-container style="margin: 0">
+                <label>Telephone</label>
+                <input type="input" ng-model="gauTelephone" ng-pattern="/^[0-9]{10}$/" flex></textarea>
+                <div ng-messages="scholarship.telephone.$error" ng-hide="showHints">
+                    <div ng-message="pattern">Only 10 numbers allowed</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container style="margin: 0">
+                <label>Cellphone</label>
+                <input type="input" ng-model="gauCellphone" ng-pattern="/^[0-9]{13}$/" required flex></textarea>
+                <div ng-messages="scholarship.cellphone.$error" ng-hide="showHints">
+                    <div ng-message="pattern">Only 13 numbers allowed</div>
+                </div>
+            </md-input-container>
+            
+            <md-input-container style="margin: 0">
+                <label>E-mail Address</label>
+                <textarea type="email" ng-model="gauEmail" flex required></textarea>
+            </md-input-container>
+
+            <md-select ng-model="employment" placeholder="Employment" class="md-no-underline"
+                required>
+                <md-option value="employed">Employed</md-option>
+                <md-option value="unemployed">Unemployed</md-option>
+                <md-option value="self employed">Self Employed</md-option>
+            </md-select>
+
+        <md-button class="md-raised md-primary login" ng-click="submit()" ng-disabled="scholarship.$invalid">
+            <span style="margin-right: 1em">Submit</span>
+            <md-icon md-svg-src="svg/ic_send_white_24px.svg"></md-icon>
+        </md-button>
+        </form>
+    </md-content>
+</div>
