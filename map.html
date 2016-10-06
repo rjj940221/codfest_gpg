@@ -2,22 +2,43 @@
 <div layout="column" style="height: 100%">
 	<div>
 		<md-toolbar>
-		    <div class="md-toolbar-tools">
+			<div class="md-toolbar-tools">
 				<div layout="row" layout-align="center center">
 					<a href="#/"><h1 class="md-toolbar-item">Home</h1></a>
 					<md-icon md-svg-icon="svg/ic_chevron_right_white_24px.svg" style="color: inherit" aria-hidden="true"></md-icon>
 				</div>
-		        <h2>Map</h2>
-		        <span flex></span>
-		    </div>
+				<h2>Map</h2>
+				<span flex></span>
+				<div layout="row" style="position: relative">
+					<md-fab-speed-dial md-direction="down" class="md-scale" style="margin: 0; position: absolute; right: 0; top: -12.5%;">
+						<md-fab-trigger>
+							<md-button aria-label="menu" class="md-raised md-warn">
+								<md-icon md-svg-src="svg/ic_menu_white_24px.svg"></md-icon>
+							</md-button>
+						</md-fab-trigger>
+
+						<md-fab-actions>
+							<md-button class="md-raised" style="margin-top: 2px" id="heatmap" ng-click="gimme_heat()">
+								Heatmap
+							</md-button>
+							<md-button class="md-raised" style="margin-top: 2px" id="crimes" ng-click="showme_crimes()">
+								Crimes
+							</md-button>
+							<md-button class="md-raised" style="margin-top: 2px" id="saps" ng-click="showme_saps()">
+								SAPS
+							</md-button>
+						</md-fab-actions>
+					</md-fab-speed-dial>
+				</div>
+
+			</div>
 		</md-toolbar>
 	</div>
-
 	<div flex layout-padding style="height: 100%; width: 100%">
-			<div id="map" style="height: 100%; padding: 0"></div>
-		    <script type="text/javascript">
-		        console.log("init_map");
-				init_map();
-		    </script>
+		<div id="map" style="height: 100%; padding: 0"></div>
+		<script type="text/javascript">
+			console.log("init_map");
+			init_map();
+		</script>
 	</div>
 </div>

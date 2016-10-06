@@ -1,93 +1,182 @@
 gpg.controller('map__', function($scope) {
-	document.title = "Map";
+
+    $scope.gimme_heat = function () {
+        load_heatmap();
+        heatmap.setMap(heatmap.getMap() ? null : map);
+		if (heatmap.getMap() === null) {
+			$("#heatmap").removeClass("md-accent");
+		}
+		else {
+			$("#heatmap").addClass("md-accent");
+		}
+    };
+
+    $scope.showme_saps = function () {
+        console.log("Initiating saps loop");
+        marker_saps = marker_saps ? 0 : 1;
+        if (marker_saps === 1) {
+            saps_db.forEach(function (item) {
+                var saps = new google.maps.Marker({
+                    position: new google.maps.LatLng(item.latitude, item.longitude),
+                    map: map,
+                    icon: image_saps,
+                    title: item.name,
+                    zIndex: parseInt(item.id)
+                });
+                saps_mark.push(saps);
+            });
+			$("#saps").addClass("md-accent");
+        }
+        else {
+            for (i = 0; i < saps_mark.length; i++) {
+				saps_mark[i].setVisible(false);
+			}
+            $("#saps").removeClass("md-accent");
+        }
+    };
+
+    $scope.showme_crimes = function () {
+        console.log("Initiating incident loop");
+        marker_incident = marker_incident ? 0 : 1;
+        if (marker_incident === 1) {
+            incidents_db.forEach(function (item) {
+                var crimes = new google.maps.Marker({
+                    position: new google.maps.LatLng(item.latitude, item.longitude),
+                    map: map,
+                    icon: image,
+                    title: item.event,
+                    zIndex: parseInt(item.id)
+                });
+                incident_mark.push(crimes);
+            });
+			$("#crimes").addClass("md-accent");
+        }
+        else {
+            for (i = 0; i < incident_mark.length; i++) {
+				incident_mark[i].setVisible(false);
+			}
+            $("#crimes").removeClass("md-accent");
+        }
+
+        $scope.logout = function () {
+            delete $scope.user;
+            delete $sessionStorage.user_id;
+            delete $sessionStorage.user_name;
+            delete $sessionStorage.rights;
+        };
+
+        $scope.register = function (ev) {
+            $mdSidenav('account').close();
+            console.log("Opening register_form");
+            $mdDialog.show({
+                controller: dialog__,
+                locals: {job_id: undefined, user_id: undefined},
+                templateUrl: "register_form.html",
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                fullscreen: true
+            });
+            console.log("test");
+        };
+        document.title = "Map";
+    };
 });
 
-var incidents = [];
-var url = "http://owen.exall.za.net/GPG/select_incidents.php";
-$.getJSON(url, function(result) {
+var incidents_db = [];
+var incident_mark = [];
+var saps_db = [];
+var saps_mark  = [];
+var heatmap_data = [];
+var marker_incident = 0;
+var marker_saps = 0;
+var map;
+var url_incident = "http://owen.exall.za.net/GPG/select_incidents.php";
+$.getJSON(url_incident, function(result) {
 	$.each(result, function(i, field) {
-		incidents.push(field);
+		incidents_db.push(field);
 	});
 });
+
+var url_saps = "http://owen.exall.za.net/GPG/select_all_police_stations.php";
+$.getJSON(url_saps, function(result) {
+	$.each(result, function(i, field) {
+		saps_db.push(field);
+	});
+});
+
+// Image used for crime pinpointing
+var image = {
+	url: 'svg/ic_danger_location_black_24px.svg',
+	size: new google.maps.Size(40, 40),
+	origin: new google.maps.Point(0, 0),
+	anchor: new google.maps.Point(14, 40)
+};
+
+var image_saps = {
+	url: 'svg/ic_saps_back_40px.svg',
+	size: new google.maps.Size(40, 40),
+	origin: new google.maps.Point(0, 0),
+	anchor: new google.maps.Point(14, 40)
+};
+// Gradient for the heatmap
+var grad_array =
+[	'rgba(0, 255, 255, 0)',
+	'rgba(63, 0, 91, 1)',
+	'rgba(127, 0, 63, 1)',
+	'rgba(191, 0, 31, 1)',
+	'rgba(255, 0, 0, 1)'];
+
+//heatmap Data points defined as an array of LatLng objects
+var heatmap = new google.maps.visualization.HeatmapLayer({
+  data: heatmap_data,
+	gradient: grad_array,
+	radius: 35
+});
+
+function load_heatmap(map) {
+	console.log("Loading heatmap");
+	incidents_db.forEach(function(item) {
+		console.log(item);
+		heatmap_data.push(new google.maps.LatLng(item.latitude, item.longitude));
+	});
+}
+
+var my_location = new google.maps.LatLng(-26.114779, 27.952908);
+var map_options = {
+	//mapTypeId: 'satellite',
+	zoom: 15,
+	center: my_location,
+	zoomControl: true,
+	mapTypeControl: false,
+	scaleControl: false,
+	streetViewControl: false,
+	rotateControl: false,
+	fullscreenControl: false
+};
 
 function init_map() {
 	console.log("Opening map");
-	// TODO: prompt the user to activate the gps on failure
+	console.log(heatmap_data);
+	//getInfo();
 	navigator.geolocation.getCurrentPosition(on_success, on_error, {
-		timeout: 5000
-	});
+		timeout: 1000});
 }
 
-function on_success(position) {
-	getInfo();
+function draw_map() {
+	map = new google.maps.Map(document.getElementById("map"), map_options);
+	//show_incidents(map);
+	var my_marker = new google.maps.Marker({position: my_location, map: map});
+}
+
+function on_success(position){
+	console.log("GPS activated sucessfully!");
 	var lat = position.coords.latitude;
 	var lng = position.coords.longitude;
-
-	var my_location = new google.maps.LatLng(lat, lng);
-	var map_options = {
-		zoom: 13,
-		center: my_location,
-		zoomControl: true,
-		mapTypeControl: false,
-		scaleControl: false,
-		streetViewControl: false,
-		rotateControl: false,
-		fullscreenControl: false
-	};
-	console.log(document.getElementById("map"));
-	var map = new google.maps.Map(document.getElementById("map"), map_options);
-	var my_marker = new google.maps.Marker({
-		position: my_location,
-		map: map
-	});
-
-	show_incidents(map);
-}
-
-function show_incidents(map) {
-
-
-	// Origins, anchor positions and coordinates of the marker increase in the X
-	// direction to the right and in the Y direction down.
-	var image = {
-		url: 'svg/ic_danger_location_black_24px.svg',
-		// This marker is 20 pixels wide by 32 pixels high.
-		size: new google.maps.Size(40, 40),
-		// The origin for this image is (0, 0).
-		origin: new google.maps.Point(0, 0),
-		// The anchor for this image is the base of the flagpole at (0, 32).
-		anchor: new google.maps.Point(14, 40)
-	};
-	incidents.forEach(function(item) {
-		console.log(item);
-		var crimes = new google.maps.Marker({
-			position: new google.maps.LatLng(item.latitude, item.longitude),
-			map: map,
-			icon: image,
-			title: item.event,
-			zIndex: parseInt(item.id)
-		});
-	});
+	my_location = new google.maps.LatLng(lat, lng);
+	draw_map();
 }
 
 function on_error(error) {
-	document.addEventListener("deviceready", function() {
-		cordova.dialogGPS("Your GPS is Disabled, please enable it to use this app.", //message
-			"Activate location.", //description
-			function(buttonIndex) { //callback
-				switch (buttonIndex) {
-					case 0:
-						break; //cancel
-					case 1:
-						break; //Activate
-				}
-			},
-			"Please Turn on GPS", //title
-			["Cancel", "Activate"]); //buttons
-	});
+	console.log("GPS activation failure!");
+	draw_map();
 }
-
-
-//		alert('code: ' + error.code + '\n' +
-//				'message: ' + error.message + '\n');
-//	}
