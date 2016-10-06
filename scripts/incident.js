@@ -1,17 +1,14 @@
 gpg.controller('incident__', function($scope) {
 
-
-
     $scope.get_my_loc = function() {
         console.log("TTTT");
         navigator.geolocation.getCurrentPosition(push_coordinates, gps_error, {
             timeout: 5000
         });
     };
-
 });
 
- function push_coordinates(position) {
+function push_coordinates(position) {
     console.log("GPS coordinates fetched!");
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
@@ -50,6 +47,6 @@ gpg.controller('incident__', function($scope) {
     console.log(lng);
 }
 
-  function gps_error(error) {
+function gps_error(error) {
     console.log("GPS failure!");
 }

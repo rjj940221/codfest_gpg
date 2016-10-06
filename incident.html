@@ -13,29 +13,31 @@
     <div layout="column" layout-align="space-between">
         <div layout="column" layout-wrap>
             <div ng-include="'address.html'"></div>
-
-
         </div>
-
         <div layout="column" layout-wrap>
-            <h2>Select a location</h2>
-
-
+            <h2>Select a location
             <md-button class="md-raised" aria-label="Current Location" ng-click="get_my_loc()" style="margin-left: auto; margin-right: 0.5rem">
                 Get Location
             </md-button>
-
-            <div flex aria-label="map for select location" style="height: 100vw">
-                <div id="map" style="height: 100%; padding: 0"></div>
-                <script type="text/javascript">
-                    console.log("init_map");
-                    init_map();
-                </script>
-            </div>
-
             <md-button class="md-raised" href="" aria-label="Submit" ng-click="null" style="max-width: 200px">
                 Submit
             </md-button>
+            </h2>
+            <div flex aria-label="map for select location" style="height: 100vw">
+                <div id="map" style="height: 90%; width: 90%; padding: 0; margin: auto"></div>
+                <script type="text/javascript">
+                    console.log("init_map");
+                                        init_map();
+                    //Add listener
+                    google.maps.event.addListener(marker, "click", function (event) {
+                      var latitude = event.latLng.lat();
+                      var longitude = event.latLng.lng();
+                      console.log( latitude + ', ' + longitude );
+                    }); //end addListener
+
+                </script>
+            </div>
+
         </div>
     </div>
 </md-content>
