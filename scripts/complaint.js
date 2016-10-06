@@ -1,4 +1,4 @@
-gpg.controller('complaint__', function($scope, $filter, $http, $sessionStorage) {
+gpg.controller('complaint__', function($scope, $filter, $http, $sessionStorage, $mdSidenav) {
 	document.title = "File Complaint";
 	console.log("test complaint");
 
@@ -23,12 +23,10 @@ gpg.controller('complaint__', function($scope, $filter, $http, $sessionStorage) 
 
 
 	$scope.submit = function () {
-		console.log("Complaining");
-		console.log($sessionStorage.user_id);
-		console.log($scope.userStation);
-		console.log($scope.description);
-		console.log($scope.police_officer)
-
+		if ($sessionStorage.user_id == undefined || !sessionStorage) {
+			$mdSidenav('account').open();
+			return ;
+		}
 		var complaint = {
 			insert: "yes",
 			user_id: $sessionStorage.user_id,
