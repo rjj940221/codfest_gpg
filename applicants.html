@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<script>console.log("application lis opend");</script>
 <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
     <md-toolbar class="site-content-toolbar" ng-click="close()">
         <div class="md-toolbar-tools">
@@ -19,7 +20,26 @@
     </md-content>
 </md-sidenav>
 
-<div ng-controller="jobs__" layout="column" flex ng-init="promiseApplicants()">
+<!--<div ng-controller="jobs__">
+    <md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()">
+                <md-icon md-svg-src="svg/ic_menu_white_24px.svg"></md-icon>
+            </md-button>
+            <div layout="row" layout-align="center center">
+                <a href="#/"><h1 class="md-toolbar-item">Home</h1></a>
+                <md-icon md-svg-icon="svg/ic_chevron_right_white_24px.svg" style="color: inherit" aria-hidden="true"></md-icon>
+            </div>
+            <h2 class="md-toolbar-item">Jobs</h2>
+            <span flex></span>
+            <md-button class="md-icon-button md-toolbar-item" aria-label="Account" ng-click="toggleAccount()">
+                <md-icon md-svg-src="svg/ic_account_circle_white_24px.svg"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+</div>-->
+
+<div ng-controller="jobs__" layout="column" flex ng-init="promise()">
     <md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
         <div class="md-toolbar-tools">
             <md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()">

@@ -12,7 +12,7 @@ function dialog__($http, $scope, $mdDialog, $mdSidenav, $sessionStorage,job, use
 
 	$scope.apply = function() {
 		$mdDialog.hide();
-		if ($sessionStorage.user_id == undefined || !sessionStorage) {
+		if ($sessionStorage.user_id === undefined || !sessionStorage) {
 			$mdSidenav('account').open();
 			return ;
 		}

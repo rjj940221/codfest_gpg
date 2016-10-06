@@ -24,5 +24,9 @@ gpg.config(function($routeProvider) {
             templateUrl: 'my_jobs.html',
             controller: 'jobs__'
         })
+        .when('/applicants', {
+            templateUrl: 'applicants.html',
+            controller: 'jobs__'
+        })
     ;
 });

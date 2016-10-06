@@ -78,4 +78,11 @@ a:active {
 .login {
 	margin-left: auto;
 	padding: 0 1rem;
+<<<<<<< HEAD
+=======
+}
+
+.map-buttons {
+	margin-top: 15px;
+>>>>>>> f0e6a4ec9b54cba2b925de20be79fc310b2184a1
 }

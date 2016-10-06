@@ -62,7 +62,7 @@
                     </div>
                     <div>
                         <md-menu>
-                            <md-button aria-label="Job Menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+                            <md-button aria-label="Job Menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event, job.id)">
                                 <md-icon md-menu-origin="" md-svg-icon="svg/ic_menu_white_12px.svg"></md-icon>
                             </md-button>
                             <md-menu-content width="4">
@@ -72,7 +72,7 @@
                                     </md-button>
                                 </md-menu-item>
                                 <md-menu-item>
-                                    <md-button  href="#/applicants" ng-click="setJobId(job.id)">
+                                    <md-button href="#/applicants">
                                       View Applicants
                                     </md-button>
                                 </md-menu-item>
