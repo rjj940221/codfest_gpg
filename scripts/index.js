@@ -1,6 +1,7 @@
 gpg = angular.module('home', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngStorage']);
 
-gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog, userId, $sessionStorage, $window) {
+
+gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog, userId, $sessionStorage, $window, $route) {
         document.title = "Home";
 
         $scope.toggleAccount = function () {
@@ -104,43 +105,18 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
                 fullscreen: true
             });
         };
-});
 
-gpg.config(function($routeProvider) {
-    $routeProvider
-        .when('/', {
-            templateUrl: 'home.html',
-            controller: 'home__'
-        })
-        .when('/comm_safety', {
-            templateUrl: 'comm_safety_home.html',
-            controller: 'safety__'
-        })
-        .when('/jobs', {
-            templateUrl: 'jobs.html',
-            controller: 'jobs__'
-        })
-        .when('/incident', {
-            templateUrl: 'incident.html',
-            controller: 'incident__'
-        })
-		.when('/map', {
-			templateUrl: 'map.html',
-			controller: 'map__'
-		})
-		.when('/create_job', {
-			templateUrl: 'create_job.html',
-			controller: 'create_job__'
-		})
-        .when('/admin', {
-            templateUrl: 'admin.html',
-            controller: 'admin__'
-        })
-        .when ('/complaint', {
-            templateUrl: 'complaint.html',
-            controller: 'complaint__'
-        });
-});
+
+        $scope.openMap = function (ev, id) {
+            $mdDialog.show({
+                controller: dialog__,
+                templateUrl: "map.html",
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                fullscreen: true
+            });
+        };
+    });
 
 gpg.factory('userId', function() {
 	var data =
