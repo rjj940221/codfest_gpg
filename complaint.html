@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<div layout="column">
+	<md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
+	    <div class="md-toolbar-tools">
+	        <md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()">
+	            <md-icon md-svg-src="svg/ic_menu_white_24px.svg"></md-icon>
+	        </md-button>
+			<div layout="row" layout-align="center center">
+				<a href="#/comm_safety"><h1 class="md-toolbar-item">Community Safety</h1></a>
+				<md-icon md-svg-icon="svg/ic_chevron_right_white_24px.svg" style="color: inherit" aria-hidden="true"></md-icon>
+				<a href="#/complaint"><h1 class="md-toolbar-item">File Complaint</h1></a>
+			</div>
+	        <span flex></span>
+	    </div>
+	</md-toolbar>
+
+	<md-content flex layout-padding>
+		<form name="new_job" layout="column">
+			<md-input-container style="margin-bottom: 0">
+				<label>Job Title</label>
+				<input ng-model="newJob.title" name="title" required />
+			</md-input-container>
+			<md-input-container style="margin: 0">
+				<label>Discription (HTML will be processed)</label>
+				<textarea ng-model="newJob.discription" name="discription" required ng-maxlength="500" />
+			</md-input-container>
+			<md-divider></md-divider>
+			<h2>Responsibilities</h2>
+			<md-list>
+				<md-list-item ng-repeat="item in resps" layout="row">
+					<md-input-container style="width: 100%" ng-blur="AddItem">
+						<label>Responsibity</label>
+						<textarea type="text" ng-model="item.text" flex></textarea>
+					</md-input-container>
+					<span flex></span>
+					<md-button ng-if="$last" class="md-icon-button">
+						<md-icon md-svg-icon="svg/ic_add_black_24px.svg" aria-label="Add new" ng-click="newItemResp()"></md-icon>
+					</md-button>
+					<md-button ng-if="!$last" class="md-icon-button">
+						<md-icon md-svg-icon="svg/ic_delete_black_24px.svg" aria-label="Delete" ng-click="deleteItemResp($index)"></md-icon>
+					</md-button>
+				</md-list-item>
+			</md-list>
+		</form>
+	</md-content>
+</div>

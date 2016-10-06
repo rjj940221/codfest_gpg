@@ -213,6 +213,10 @@ gpg.config(function($routeProvider) {
         .when('/admin', {
             templateUrl: 'admin.html',
             controller: 'admin__'
+        })
+        .when ('/complaint', {
+            templateUrl: 'complaint.html',
+            controller: 'complaint__'
         });
 });
 
