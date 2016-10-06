@@ -16,7 +16,7 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
             $window.location.href = '#admin';
         };
 
-        $scope.login = function () {
+        $scope.login = function (ev) {
             if (!$scope.userId) {
                 alert("Please enter your login details.");
             }
@@ -39,9 +39,10 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
                 $scope.DialogTitle = "Invalid Login";
                 $mdDialog.show({
                     controller: dialog__,
+                    locals: { job: undefined, user_id: undefined},
                     dialogMsg: "Invalid ID, E-mail or Password",
                     dialogTitle: "Invalid Login",
-                    templateUrl: "genericDialog.html",
+                    templateUrl: "dialogs/invalid_login.html",
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     fullscreen: false
@@ -73,6 +74,7 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
                     $scope.isLoading = false;
                     $mdDialog.show({
                         controller: dialog__,
+                        locals: { job: undefined, user_id: undefined},
                         templateUrl: "dialogs/invalid_login.html",
                         parent: angular.element(document.body),
                         targetEvent: ev,
