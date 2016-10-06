@@ -1,4 +1,4 @@
-gpg.controller('jobs__', function($scope, $http, $mdDialog, userId, $mdSidenav, $sessionStorage, $q) {
+gpg.controller('jobs__', function($scope, $http, $mdDialog, $mdSidenav, $sessionStorage, $q) {
 
     $scope.listJobs = function () {
         document.title = "Jobs";
@@ -215,7 +215,7 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId, $mdSidenav, 
 					$scope.job_info = job;
 					console.log("description: " + $scope.job_info.description);
 					$mdDialog.show({
-						locals: { user_id: userId.getUserId()},
+						locals: { user_id: $sessionStorage.user_id},
 						controller: dialog__,
 						templateUrl: "jobs_info.html",
 						parent: angular.element(document.body),
