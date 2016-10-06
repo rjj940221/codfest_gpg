@@ -13,7 +13,11 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
             $mdSidenav('account').close();
         };
 
-        $scope.login = function () {
+        $scope.show_admin = function () {
+            $window.location.href = '#admin';
+        };
+
+        $scope.login = function (ev) {
             if (!$scope.userId) {
                 alert("Please enter your login details.");
             }
@@ -36,15 +40,17 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
                 $scope.DialogTitle = "Invalid Login";
                 $mdDialog.show({
                     controller: dialog__,
+                    locals: { job: undefined, user_id: undefined},
                     dialogMsg: "Invalid ID, E-mail or Password",
                     dialogTitle: "Invalid Login",
-                    templateUrl: "genericDialog.html",
+                    templateUrl: "dialogs/invalid_login.html",
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     fullscreen: false
                 });
                 return;
             }
+
             console.log(login); //change the url below to the one on the website
             var request = {
                 method: 'POST',
@@ -92,12 +98,14 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
             console.log("Opening register_form");
             $mdDialog.show({
                 controller: dialog__,
+                locals: {job_id: undefined, user_id: undefined},
                 templateUrl: "register_form.html",
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 fullscreen: true
             });
         };
+
 
         $scope.openMap = function (ev, id) {
             $mdDialog.show({
@@ -109,10 +117,6 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
             });
         };
     });
-
-
-
-
 
 gpg.factory('userId', function() {
 	var data =

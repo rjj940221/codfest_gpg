@@ -1,6 +1,7 @@
 function dialog__($http, $scope, $mdDialog, $mdSidenav, $sessionStorage,job, user_id) {
     $scope.job_info = job;
-    var job_id = job.id;
+    if (job !== undefined)
+    	var job_id = job.id;
 	console.log("Opening dialog");
 	$scope.hide = function() {
 		$mdDialog.hide();

@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="styles/index.css">
 		<link rel="stylesheet" href="styles/job.css" />
 
-	<script src="scripts/map.js" defer></script>
+		<script src="scripts/map.js" defer></script>
 		<script src="material/jquery-3.1.1.min.js"></script>
 		<script src="material/gmaps.js"></script>
         <script src="material/angular.min.js"></script>
@@ -24,6 +24,9 @@
 		<script src="scripts/create_job.js" charset="utf-8"></script>
 		<script src="scripts/map.js" charset="utf-8"></script>
 		<script src="scripts/routes.js"></script>
+		<script src="scripts/complaint.js" charset="utf-8"></script>
+		<script src="scripts/incident.js" defer></script>
+
 
         <title>Home</title>
     </head>
@@ -68,6 +71,9 @@
 					</div>
 					<div layout="column" layout-align="space-around" ng-hide="!user.id">
 						<h2>Welcome, {{user.first_name}}</h2>
+						<md-button class="md-raised md-primary admin" ng-click="show_admin()" ng-hide="user.admin_rights != 'Admin'">
+							Admin
+						</md-button>
 						<md-button class="md-raised md-primary logout" ng-click="logout()">
 							Sign Out
 						</md-button>

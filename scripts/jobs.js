@@ -1,4 +1,3 @@
-
 gpg.controller('jobs__', function($scope, $http, $mdDialog, userId, $mdSidenav, $sessionStorage, $q) {
 
     $scope.listJobs = function () {
