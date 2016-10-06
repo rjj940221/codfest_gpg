@@ -2,9 +2,6 @@
 <div layout="column">
 	<md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
 	    <div class="md-toolbar-tools">
-	        <md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()">
-	            <md-icon md-svg-src="svg/ic_menu_white_24px.svg"></md-icon>
-	        </md-button>
 			<div layout="row" layout-align="center center">
 				<a hide show-gt-xs href="#/"><h1 class="md-toolbar-item">Home</h1></a>
 				<md-icon hide show-gt-xs md-svg-icon="svg/ic_chevron_right_white_24px.svg" style="color: inherit" aria-hidden="true"></md-icon>
@@ -13,6 +10,9 @@
 				<a href="#/new_job"><h1 class="md-toolbar-item">New Job</h1></a>
 			</div>
 	        <span flex></span>
+			<md-button class="md-icon-button md-toolbar-item" aria-label="Account" ng-click="toggleAccount()">
+				<md-icon md-svg-src="svg/ic_account_circle_white_24px.svg"></md-icon>
+			</md-button>
 	    </div>
 	</md-toolbar>
 
