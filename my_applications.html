@@ -61,6 +61,23 @@
                             {{job.created}}
                         </p>
                     </div>
+                    <md-menu ng-show="job.status == 'offer'">
+                        <md-button aria-label="Job Menu" ng-click="openMenu($mdOpenMenu, $event, job.id)" ng-show="job.status == 'offer'">
+                            <md-icon md-svg-icon="svg/ic_menu_white_12px.svg"></md-icon>
+                        </md-button>
+                        <md-menu-content width="4" ng-show="job.status == 'offer'">
+                            <md-menu-item ng-show="job.status == 'offer'">
+                                <md-button ng-click="reactOffer(job, 'accepted')">
+                                    accept offer
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-show="job.status == 'offer'">
+                                <md-button ng-click="reactOffer(job , 'rejected')">
+                                    reject offer
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
                 </div>
             </md-list-item>
         </md-list>
