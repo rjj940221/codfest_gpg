@@ -1,9 +1,14 @@
 gpg = angular.module('home', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngStorage']);
 
-
-gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog, userId, $sessionStorage, $window, $route) {
+gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog, $sessionStorage, $window, $route) {
         document.title = "Home";
-		$scope.user = $sessionStorage.user;
+		$scope.user = [];
+		if ($sessionStorage.user_id) {
+			console.log("Session already exists " + $sessionStorage.user_id);
+			$scope.user.id = $sessionStorage.user_id;
+			$scope.user.first_name = $sessionStorage.user_name;
+			$scope.user.admin_rights = $sessionStorage.rights;
+		}
 
         $scope.toggleAccount = function () {
             $mdSidenav('account').toggle();
@@ -107,8 +112,7 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
             });
         };
 
-
-        $scope.openMap = function (ev, id) {
+/*        $scope.openMap = function (ev, id) {
             $mdDialog.show({
                 controller: dialog__,
                 templateUrl: "map.html",
@@ -116,7 +120,7 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
                 targetEvent: ev,
                 fullscreen: true
             });
-        };
+        }; */
     });
 
 gpg.factory('userId', function() {

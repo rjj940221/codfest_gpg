@@ -42,6 +42,8 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId, $mdSidenav, 
         });
     };
 
+	$scope.listJobs(); /* !!! IMPORTANT !!! loads list on page load */
+
     $scope.myJobs = function () {
         $mdDialog.hide();
         if ($sessionStorage.user_id === undefined || !sessionStorage) {
