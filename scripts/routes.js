@@ -12,6 +12,10 @@ gpg.config(function($routeProvider) {
             templateUrl: 'jobs.html',
             controller: 'jobs__'
         })
+        .when('/incident', {
+            templateUrl: 'incident.html',
+            controller: 'incident__'
+        })
         .when('/map', {
             templateUrl: 'map.html',
             controller: 'map__'
@@ -19,6 +23,14 @@ gpg.config(function($routeProvider) {
         .when('/create_job', {
             templateUrl: 'create_job.html',
             controller: 'create_job__'
+        })
+        .when('/admin', {
+            templateUrl: 'admin.html',
+            controller: 'admin__'
+        })
+        .when ('/complaint', {
+            templateUrl: 'complaint.html',
+            controller: 'complaint__'
         })
         .when('/my_jobs', {
             templateUrl: 'my_jobs.html',
