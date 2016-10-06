@@ -110,6 +110,16 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
         };
     });
 
+gpg.controller('incident__', function($scope) {
+
+
+  $scope.get_my_loc = function () {
+    navigator.geolocation.getCurrentPosition(push_coordinates, gps_error, {
+  		timeout: 1000});
+  };
+
+});
+
 gpg.controller('map__', function($scope) {
 
     $scope.gimme_heat = function () {
@@ -195,6 +205,10 @@ gpg.config(function($routeProvider) {
         .when('/jobs', {
             templateUrl: 'jobs.html',
             controller: 'jobs__'
+        })
+        .when('/incident', {
+            templateUrl: 'incident.html',
+            controller: 'incident__'
         })
 		.when('/map', {
 			templateUrl: 'map.html',
