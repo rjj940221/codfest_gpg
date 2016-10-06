@@ -37,6 +37,10 @@ a, a:link, a:visited, a:hover {
     background-color: #2196F3;
 }
 
+.amber {
+	background-color: #FFC107;
+}
+
 .background-image {
     display: block;
     margin: auto;
