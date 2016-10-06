@@ -43,6 +43,5 @@ gpg.config(function($routeProvider) {
         .when('/my_applications', {
         templateUrl: 'my_applications.html',
         controller: 'jobs__'
-    })
-    ;
+    });
 });

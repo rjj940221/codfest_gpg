@@ -13,7 +13,7 @@ function dialog__($http, $scope, $mdDialog, $mdSidenav, $sessionStorage,job, use
 
 	$scope.apply = function() {
 		$mdDialog.hide();
-		if ($sessionStorage.user_id === undefined || !sessionStorage) {
+		if ($sessionStorage.user_id === undefined || !sessionStorage.user) {
 			$mdSidenav('account').open();
 			return ;
 		}
@@ -28,7 +28,7 @@ function dialog__($http, $scope, $mdDialog, $mdSidenav, $sessionStorage,job, use
 		};
 		var request = {
             method: 'POST',
-            url: 'PHP/create_application_link.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+            url: 'http://owen.exall.za.net/gpg/create_application_link.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: link
         };

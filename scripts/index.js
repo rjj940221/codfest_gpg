@@ -3,6 +3,7 @@ gpg = angular.module('home', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngStorage'
 
 gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog, userId, $sessionStorage, $window, $route) {
         document.title = "Home";
+		$scope.user = $sessionStorage.user;
 
         $scope.toggleAccount = function () {
             $mdSidenav('account').toggle();

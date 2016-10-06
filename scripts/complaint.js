@@ -2,11 +2,6 @@ gpg.controller('complaint__', function($scope, $filter, $http, $sessionStorage, 
 	document.title = "File Complaint";
 	console.log("test complaint");
 
-	//$scope.userState = "";
-	//$scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-    //        'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-    //        'WY').split(' ').map(function (state) { return { abbrev: state }; });
-
     $scope.stations = [];
     $http.get("http://owen.exall.za.net/gpg/select_all_police_stations.php")
     	.then(function (response) {
@@ -21,9 +16,8 @@ gpg.controller('complaint__', function($scope, $filter, $http, $sessionStorage, 
     	});
     console.log($scope.stations);
 
-
 	$scope.submit = function () {
-		if ($sessionStorage.user_id == undefined || !sessionStorage) {
+		if ($sessionStorage.user_id === undefined || !sessionStorage) {
 			$mdSidenav('account').open();
 			return ;
 		}
@@ -37,7 +31,7 @@ gpg.controller('complaint__', function($scope, $filter, $http, $sessionStorage, 
 
 		var request = {
 			method: 'POST',
-			url: 'PHP/submit_complaint.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+			url: 'http://owen.exall.za.net/gpg/submit_complaint.php',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			data: complaint
 		};
