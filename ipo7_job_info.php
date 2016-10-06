@@ -4,27 +4,37 @@
 header('Access-Control-Allow-Origin: *');
 
 //initiate database connection
-$db = mysqli_connect("lin.arvixe.com", "owen_gpg_super","password") or die ("unable to connect to database");
+$post_data = file_get_contents("php://input");
+$request = json_decode($post_data);
 
-//select database
-mysqli_select_db('database_name', $db) or die (mysqli_error($db));
+if (is_numeric($request) === false)
+    die("false");
+$con = mysqli_connect("lin.arvixe.com", "owen_gpg_super","password") or die ("unable to connect to database");
 
+if($con) {
 //query to display job information
-$query = 'SELECT * FROM tb_job';
+    $query = "SELECT `tb_job`.*, `tb_company`.`listing_name` FROM `owen_gpg`.`tb_job`".
+        " JOIN `owen_gpg`.`tb_company` ON `tb_company`.`id` = `tb_job`.`company_id`".
+        " WHERE `tb_job`.`id`='" . $request . "';";
+
+    //echo $query;
 
 //store results
-$results = mysqli_query($db, $query) or die (mysqli_error($db));
+    $results = mysqli_query($con, $query);
 
-//display results
-while ($rows = mysqli_fetch_assoc($results))
-{
-	foreach ($rows as $values)
-	{
-		echo json_encode($value);
-	}
-}
-
+    if ($results) {
+        $out = mysqli_fetch_assoc($results);
+        if ($out)
+        {
+            echo json_encode($out);
+        }
+        else
+            echo "false";
+    } else
+        echo "false";
 //close connection
-mysqli_close($db);
-
+    mysqli_close($con);
+}
+else
+    echo "false";
 ?>
