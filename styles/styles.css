@@ -79,3 +79,7 @@ a:active {
 	margin-left: auto;
 	padding: 0 1rem;
 }
+
+.map-buttons {
+	margin-top: 15px;
+}

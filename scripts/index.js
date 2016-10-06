@@ -67,14 +67,12 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
                     $sessionStorage.rights = $scope.user.admin_rights;
                     $scope.isLoading = false;
                     console.log("Successful Login");
-                    if ($scope.user.admin_rights != "Admin")
-                        $mdSidenav('account').close();
+                    $mdSidenav('account').close();
                 } else {
                     console.log("Failed Login");
                     $scope.isLoading = false;
                     $mdDialog.show({
                         controller: dialog__,
-                        locals: { job: undefined, user_id: undefined},
                         templateUrl: "dialogs/invalid_login.html",
                         parent: angular.element(document.body),
                         targetEvent: ev,
@@ -99,105 +97,13 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
             console.log("Opening register_form");
             $mdDialog.show({
                 controller: dialog__,
-                locals: {job: undefined, user_id: undefined},
-                templateUrl: "register_form.html",
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                fullscreen: true
-            });
-        };
-
-        $scope.openMap = function (ev, id) {
-            $mdDialog.show({
-                controller: dialog__,
-                templateUrl: "map.html",
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                fullscreen: true
-            });
-        };
-    });
-
-gpg.controller('incident__', function($scope) {
-
-
-  $scope.get_my_loc = function () {
-    navigator.geolocation.getCurrentPosition(push_coordinates, gps_error, {
-  		timeout: 1000});
-  };
-
-});
-
-gpg.controller('map__', function($scope) {
-
-    $scope.gimme_heat = function () {
-        load_heatmap();
-        heatmap.setMap(heatmap.getMap() ? null : map);
-    };
-
-
-    $scope.showme_saps = function () {
-        console.log("Initiating saps loop");
-        marker_saps = marker_saps ? 0 : 1;
-        if (marker_saps === 1) {
-            saps_db.forEach(function (item) {
-                var saps = new google.maps.Marker({
-                    position: new google.maps.LatLng(item.latitude, item.longitude),
-                    map: map,
-                    icon: image_saps,
-                    title: item.name,
-                    zIndex: parseInt(item.id)
-                });
-                saps_mark.push(saps);
-            });
-        }
-        else {
-            for (i = 0; i < saps_mark.length; i++)
-                saps_mark[i].setVisible(false);
-        }
-    };
-
-    $scope.showme_crimes = function () {
-        console.log("Initiating incident loop");
-        marker_incident = marker_incident ? 0 : 1;
-        if (marker_incident === 1) {
-            incidents_db.forEach(function (item) {
-                var crimes = new google.maps.Marker({
-                    position: new google.maps.LatLng(item.latitude, item.longitude),
-                    map: map,
-                    icon: image,
-                    title: item.event,
-                    zIndex: parseInt(item.id)
-                });
-                incident_mark.push(crimes);
-            });
-        }
-        else {
-            for (i = 0; i < incident_mark.length; i++)
-                incident_mark[i].setVisible(false);
-        }
-        $scope.logout = function () {
-            delete $scope.user;
-            delete $sessionStorage.user_id;
-            delete $sessionStorage.user_name;
-            delete $sessionStorage.rights
-        };
-
-        $scope.register = function (ev) {
-            $mdSidenav('account').close();
-            console.log("Opening register_form");
-            $mdDialog.show({
-                controller: dialog__,
                 locals: {job_id: undefined, user_id: undefined},
                 templateUrl: "register_form.html",
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 fullscreen: true
             });
-            console.log("test");
         };
-        document.title = "Map";
-    };
 });
 
 gpg.config(function($routeProvider) {

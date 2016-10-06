@@ -1,6 +1,6 @@
 function dialog__($http, $scope, $mdDialog, $mdSidenav, $sessionStorage,job, user_id) {
     $scope.job_info = job;
-    if (job != undefined)
+    if (job !== undefined)
     	var job_id = job.id;
 	console.log("Opening dialog");
 	$scope.hide = function() {
@@ -13,7 +13,7 @@ function dialog__($http, $scope, $mdDialog, $mdSidenav, $sessionStorage,job, use
 
 	$scope.apply = function() {
 		$mdDialog.hide();
-		if ($sessionStorage.user_id == undefined || !sessionStorage) {
+		if ($sessionStorage.user_id === undefined || !sessionStorage) {
 			$mdSidenav('account').open();
 			return ;
 		}

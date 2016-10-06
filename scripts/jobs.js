@@ -1,6 +1,4 @@
-gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
-
-
+gpg.controller('jobs__', function($scope, $http, $mdDialog, userId, $mdSidenav) {
 	document.title = "Jobs";
 
 	var range = [2, 50];
@@ -24,12 +22,12 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
 			angular.forEach(res, function(obj)
 			{
 				var job = {
-					id: obj['id'],
-					title: obj['title'],
-					company: obj['listing_name'],
-					location: obj['city'] + " " + obj['province'],
-					created: obj['date_listed'],
-					recruiter: obj['type']
+					id: obj.id,
+					title: obj.title,
+					company: obj.listing_name,
+					location: obj.city + " " + obj.province,
+					created: obj.date_listed,
+					recruiter: obj.type
 				};
 				$scope.jobListings.push(job);
 			});
@@ -63,17 +61,17 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
 					console.log(response);
 					var obj = angular.fromJson(response.data);
 					var job = {
-						id: obj['id'],
-						title: obj['title'],
-						status: obj['status'],
-						company: obj['listing_name'],
-						location: obj['address1'] +" " + obj['address2']+" " + obj['city'] + " " + obj['province'] + " " + obj['postalcode'],
-						created: obj['date_listed'],
-						recruiter: obj['type'],
-						description: obj['description']
+						id: obj.id,
+						title: obj.title,
+						status: obj.status,
+						company: obj.listing_name,
+						location: obj.address1 +" " + obj.address2 + " " + obj.city + " " + obj.province + " " + obj.postalcode,
+						created: obj.date_listed,
+						recruiter: obj.type,
+						description: obj.description
 					};
 					$scope.job_info = job;
-					console.log("description: "+$scope.job_info.description);
+					console.log("description: " + $scope.job_info.description);
 					$mdDialog.show({
 						locals: { user_id: userId.getUserId()},
 						controller: dialog__,
@@ -90,8 +88,7 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
 				} else {
 					console.log("Failed");
 				}
-			}
-			, function errorCallback(response) {
+			}, function errorCallback(response) {
 				//console.log("Error");
 				//console.log(response);
 			});
@@ -120,12 +117,12 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
 					angular.forEach(res, function(obj)
 					{
 						var job = {
-							id: obj['id'],
-							title: obj['title'],
-							company: obj['listing_name'],
-							location: obj['city'] + " " + obj['province'],
-							created: obj['date_listed'],
-							recruiter: obj['type']
+							id: obj.id,
+							title: obj.title,
+							company: obj.listing_name,
+							location: obj.city + " " + obj.province,
+							created: obj.date_listed,
+							recruiter: obj.type
 						};
 						$scope.jobListings.push(job);
 					});
@@ -134,8 +131,7 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
 				} else {
 					console.log("Failed");
 				}
-			}
-			, function errorCallback(response) {
+			}, function errorCallback(response) {
 				console.log("Error");
 				console.log(response);
 			});
@@ -163,11 +159,11 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
 					angular.forEach(res, function(obj)
 					{
 						var user = {
-							application_id:obj['tb_application_link.id'],
-							user_id: obj['tb_user.id'],
-							first_name: obj['first_name'],
-							surname: obj['surname'],
-							last_qualification:obj['last_qualification']
+							application_id:obj.tb_application_link.id,
+							user_id: obj.tb_user.id,
+							first_name: obj.first_name,
+							surname: obj.surname,
+							last_qualification:obj.last_qualification
 						};
 						$scope.aplicants.push(user);
 					});
@@ -176,14 +172,11 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
 				} else {
 					console.log("Failed");
 				}
-			}
-			, function errorCallback(response) {
+			}, function errorCallback(response) {
 				console.log("Error");
 				console.log(response);
 			});
 	};
-
-	document.title = "Jobs";
 
 	$scope.toggleLeft = function() {
         $mdSidenav('left').toggle();

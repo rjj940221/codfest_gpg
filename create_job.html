@@ -30,7 +30,7 @@
 			<h2>Responsibilities</h2>
 			<md-list>
 				<md-list-item ng-repeat="item in resps" layout="row">
-					<md-input-container style="width: 100%" ng-blur="AddItem">
+					<md-input-container style="width: 100%; margin: 0" ng-blur="AddItem">
 						<label>Responsibity</label>
 						<textarea type="text" ng-model="item.text" flex></textarea>
 					</md-input-container>
@@ -47,7 +47,7 @@
 			<h2>Qualifications</h2>
 			<md-list>
 				<md-list-item ng-repeat="item in quals" layout="row">
-					<md-input-container style="width: 100%" ng-blur="AddItem">
+					<md-input-container style="width: 100%; margin: 0" ng-blur="AddItem">
 						<label>Qualification</label>
 						<textarea type="text" ng-model="item.text" flex></textarea>
 					</md-input-container>
@@ -60,7 +60,18 @@
 					</md-button>
 				</md-list-item>
 			</md-list>
-			
+			<div layout="row" flex>
+				<md-input-container flex>
+					<label>Type</label>
+					<md-select ng-model="newJob.type">
+						<md-option ng-repeat="option in types" value="{{ option }}">{{ option }}</md-option>
+					</md-select>
+				</md-input-container>
+				<md-input-container>
+					<label>Expiry Date</label>
+					<md-datepicker ng-model="newJob.date" md-placeholder="Enter date" md-min-date="now" md-max-date="maxDate" md-open-on-focus></md-datepicker>
+				</md-input-container>
+			</div>
 		</form>
 	</md-content>
 </div>
