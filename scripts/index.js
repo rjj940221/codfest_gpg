@@ -12,6 +12,10 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
             $mdSidenav('account').close();
         };
 
+        $scope.show_admin = function () {
+            $window.location.href = '#admin';
+        };
+
         $scope.login = function () {
             if (!$scope.userId) {
                 alert("Please enter your login details.");
@@ -62,7 +66,8 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
                     $sessionStorage.rights = $scope.user.admin_rights;
                     $scope.isLoading = false;
                     console.log("Successful Login");
-                    $mdSidenav('account').close();
+                    if ($scope.user.admin_rights != "Admin")
+                        $mdSidenav('account').close();
                 } else {
                     console.log("Failed Login");
                     $scope.isLoading = false;
@@ -92,6 +97,7 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
             console.log("Opening register_form");
             $mdDialog.show({
                 controller: dialog__,
+                locals: {job: undefined, user_id: undefined},
                 templateUrl: "register_form.html",
                 parent: angular.element(document.body),
                 targetEvent: ev,
@@ -203,7 +209,11 @@ gpg.config(function($routeProvider) {
 		.when('/create_job', {
 			templateUrl: 'create_job.html',
 			controller: 'create_job__'
-		});
+		})
+        .when('/admin', {
+            templateUrl: 'admin.html',
+            controller: 'admin__'
+        });
 });
 
 gpg.factory('userId', function() {

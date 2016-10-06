@@ -8,7 +8,7 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
 	// console.log(range); //change the url below to the one on the website
 	var request = {
 		method: 'POST',
-		url: 'PHP/IPO4_job_list.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+		url: 'http://owen.exall.za.net/gpg/IPO4_job_list.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 		data: range
 	};
