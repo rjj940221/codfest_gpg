@@ -60,16 +60,18 @@
 					</md-button>
 				</md-list-item>
 			</md-list>
-			<md-input-container>
-				<label>Type</label>
-				<md-select ng-model="newJob.type">
-					<md-option ng-repeat="option in types" value="{{ option }}">{{ option }}</md-option>
-				</md-select>
-			</md-input-container>
-			<md-input-container>
-				<label>Expiry Date</label>
-				<md-datepicker ng-model="myDate" md-placeholder="Enter date" md-min-date="now" md-max-date="maxDate"></md-datepicker>
-			</md-input-container>
+			<div layout="row" flex>
+				<md-input-container flex>
+					<label>Type</label>
+					<md-select ng-model="newJob.type">
+						<md-option ng-repeat="option in types" value="{{ option }}">{{ option }}</md-option>
+					</md-select>
+				</md-input-container>
+				<md-input-container>
+					<label>Expiry Date</label>
+					<md-datepicker ng-model="myDate" md-placeholder="Enter date" md-min-date="now" md-max-date="maxDate" md-open-on-focus></md-datepicker>
+				</md-input-container>
+			</div>
 		</form>
 	</md-content>
 </div>
