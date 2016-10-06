@@ -190,57 +190,55 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId, $mdSidenav, 
             });
     };
 
-/*   function asyncApllicants($scope, job_id) {
-        var deferred = $q.defer();
+    $scope.myApplications = function()
+    {
+        $mdDialog.hide();
+        if ($sessionStorage.user_id == undefined || !sessionStorage) {
+            $mdSidenav('account').open();
+            return;
+        }
+        document.title = "My Jobs";
+        var user_id = $sessionStorage.user_id;
+        console.log("Showing applications of ID: " + user_id);
 
-       setTimeout(function() {
-            console.log("Showing info for job of ID for applicants: " + job_id);
+        var request = {
+            method: 'POST',
+            url: 'PHP/IPO39_list_user_job_application.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            data: user_id
+        };
+        $http(request).then(function successCallback(response) {
 
-            var request = {
-                method: 'POST',
-                url: './PHP/IPO38_list_applicants.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                data: job_id
-            };
-            $http(request).then(function successCallback(response) {
-
-                    console.log(response);
-                    if (response.data != "false") {
-                        console.log("Successful request for applicants");
-                        $scope.applicants = [];
-                        //console.log(response);
-                        var res = angular.fromJson(response.data);
-                        console.log(res);
-                        angular.forEach(res, function (obj) {
-                            var user = {
-                                application_id: obj['tb_application_link.id'],
-                                user_id: obj['tb_user.id'],
-                                first_name: obj['first_name'],
-                                surname: obj['surname'],
-                                last_qualification: obj['last_qualification']
-                            };
-                            $scope.applicants.push(user);
-                        });
-
-                        console.log("objects list ");
-                        console.log($scope.applicants.length);
-                        console.log($scope.applicants);
-                        deferred.resolve(true);
-                    } else {
-                        console.log("Failed");
-                        deferred.reject(false);
-                    }
+                console.log(response);
+                if (response.data != "false") {
+                    console.log("Successful");
+                    $scope.jobListings = [];
+                    //console.log(response);
+                    var res = angular.fromJson(response.data);
+                    console.log(res);
+                    angular.forEach(res, function (obj) {
+                        var job = {
+                            id: obj['id'],
+                            title: obj['title'],
+                            company: obj['listing_name'],
+                            location: obj['city'] + " " + obj['province'],
+                            created: obj['date_listed'],
+                            recruiter: obj['type'],
+                            status:obj['status']
+                        };
+                        $scope.jobListings.push(job);
+                    });
+                    console.log("objects list ");
+                    console.log($scope.jobListings);
+                } else {
+                    console.log("Failed");
                 }
-                , function errorCallback(response) {
-                    consoasyncGle.log("Error");
-                    console.log(response);
-                    deferred.reject(response.data);
-                });
-        }, 1000);
-        return deferred.promise;
-    }
-
-    $scope.promise = asyncApllicants($scope, $scope.job_id);*/
+            }
+            , function errorCallback(response) {
+                console.log("Error");
+                console.log(response);
+            });
+    };
 
 	$scope.showInfo = function(ev, id) {
 		console.log("Showing info for job of ID: " + id);
@@ -337,38 +335,38 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId, $mdSidenav, 
 			});
 	};
 
-	$scope.showApplicants= function (job_id)
+	$scope.showApplicants= function ()
 	{
-		console.log("Showing info for job of ID: " + job_id);
+		console.log("Showing info for job of ID: " + $sessionStorage.job_id);
 
 		var request = {
 			method: 'POST',
-			url: 'PHP/IPO38_list_aplicants.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+			url: 'PHP/IPO38_list_applicants.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			data: job_id
+			data: $sessionStorage.job_id
 		};
 		$http(request).then(function successCallback(response) {
 
 				console.log(response);
 				if (response.data != "false"){
 					console.log("Successful");
-					$scope.aplicants = [];
+					$scope.applicants = [];
 					//console.log(response);
 					var res = angular.fromJson(response.data);
 					console.log(res);
 					angular.forEach(res, function(obj)
 					{
 						var user = {
-							application_id:obj.tb_application_link.id,
-							user_id: obj.tb_user.id,
+							application_id:obj['tb_application_link.id'],
+							user_id: obj['tb_user.id'],
 							first_name: obj.first_name,
 							surname: obj.surname,
 							last_qualification:obj.last_qualification
 						};
-						$scope.aplicants.push(user);
+						$scope.applicants.push(user);
 					});
 					console.log("objects list ");
-					console.log($scope.aplicants);
+					console.log($scope.applicants);
 				} else {
 					console.log("Failed");
 				}
@@ -378,7 +376,8 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId, $mdSidenav, 
 			});
 	};
 
-	$scope.toggleLeft = function() {
+	$scope.toggleLeft = function()
+    {
         $mdSidenav('left').toggle();
     };
 
@@ -388,8 +387,8 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId, $mdSidenav, 
     };
 
     $scope.openMenu = function($mdOpenMenu, ev, job_id) {
-        $scope.job_id = job_id;
-        console.log("job_id :" + $scope.job_id);
+        $sessionStorage.job_id = job_id;
+        console.log("test job_id :" + $sessionStorage.job_id);
         $mdOpenMenu();
     };
 

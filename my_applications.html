@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<script>console.log("application lis opend");</script>
 <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
     <md-toolbar class="site-content-toolbar" ng-click="close()">
         <div class="md-toolbar-tools">
@@ -12,6 +11,7 @@
         <md-list flex>
             <md-list-item><md-button href="#/create_job" aria-label="create a job">Create a job</md-button></md-list-item>
             <md-list-item><md-button href="#/my_jobs" aria-label="My jobs">My jobs</md-button></md-list-item>
+            <md-list-item><md-button href="#/my_applications" aria-label="My applications">My applications</md-button></md-list-item>
             <md-list-item><md-button href="#/jobs" aria-label="My applications">back to jobs</md-button></md-list-item>
         </md-list>
         <p>
@@ -20,7 +20,7 @@
     </md-content>
 </md-sidenav>
 
-<div ng-controller="jobs__" layout="column" flex ng-init="showApplicants()">
+<div ng-controller="jobs__" layout="column" flex ng-init="myApplications()">
     <md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
         <div class="md-toolbar-tools">
             <md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()">
@@ -40,15 +40,25 @@
 
     <md-content flex layout-padding>
         <md-list flex>
-            <md-list-item class="jobs-item" md-whiteframe="2" ng-repeat="app in applicants">
+            <md-list-item class="jobs-item" md-whiteframe="2" ng-repeat="job in jobListings">
                 <div layout="column" layout-align="space-around" flex>
                     <div flex layout="row" layout-align="space-between center">
-                        <h2 class="jobs-text">{{app.first_name}} {{app.surname}}</h2>
+                        <h2 class="jobs-text">{{job.title}}</h2>
                         <span class="badge" ng-hide="job.recruiter"></span>
+                        <div>{{job.status}}</div>
                     </div>
                     <div layout="row" layout-wrap layout-align="space-between center" flex>
                         <p layout="row" layout-align="begin" class="jobs-text">
-                            {{app.last_qualification}}
+                            <md-icon md-svg-src="svg/ic_location_city_black_24px.svg"></md-icon>
+                            {{job.company}}
+                        </p>
+                        <p layout="row" layout-align="center" class="jobs-text">
+                            <md-icon md-svg-src="svg/ic_place_black_24px.svg"></md-icon>
+                            {{job.location}}
+                        </p>
+                        <p layout="row" layout-align="end" class="jobs-text">
+                            <md-icon md-svg-src="svg/ic_access_time_black_24px.svg"></md-icon>
+                            {{job.created}}
                         </p>
                     </div>
                 </div>

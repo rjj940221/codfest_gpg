@@ -1,10 +1,8 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 
-
 $post_data = file_get_contents("php://input");
 $request = json_decode($post_data);
-
 
 if (is_numeric($request))
 {
@@ -13,17 +11,13 @@ if (is_numeric($request))
     $query;
     $outp;
 
-    $query="SELECT `tb_application_link`.`id`, `tb_user`.`id`, `tb_user`.`first_name`, `tb_user`.`surname` ,
-(
-    SELECT `tb_qualification`.`name` 
- 	FROM `owen_gpg`.`tb_qualification`
-    WHERE `tb_qualification`.`user_id` = `tb_user`.`id` 
-    ORDER BY `tb_qualification`.`end_date` DESC
-    LIMIT 1
-) AS 'last_qualification'
-FROM `owen_gpg`.`tb_user` 
-INNER JOIN `tb_application_link` ON `tb_user`.`id`=`tb_application_link`.`user_id`
-WHERE `tb_application_link`.`job_id` = '".$request."';";
+    $query="SELECT `tb_job`.`id`,`tb_job`.`title`,`tb_job`.`city`, `tb_job`.`province`, `tb_job`.`type`, `tb_job`.`date_listed`, `tb_company`.`listing_name`, `tb_application_link`.`status`  FROM `owen_gpg`.`tb_job`
+JOIN `owen_gpg`.`tb_company` ON `tb_company`.`id` = `tb_job`.`company_id`
+INNER JOIN `owen_gpg`.`tb_application_link` ON `tb_application_link`.`job_id` = `tb_job`.`id`
+WHERE `tb_application_link`.`user_id` = '".$request."'
+ORDER BY `id` DESC;";
+
+    //echo $query;
 
     if (isset($query)) {
         $result = mysqli_query($con, $query);
