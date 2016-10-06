@@ -1,48 +1,46 @@
-gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
+gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav, $sessionStorage) {
 
+	$scope.listJobs= function() {
+        document.title = "Jobs";
+		var range = [2, 50];
 
-	document.title = "Jobs";
+		// console.log(range); //change the url below to the one on the website
+		var request = {
+			method: 'POST',
+			url: 'PHP/IPO4_job_list.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+			data: range
+		};
+		$http(request).then(function successCallback(response) {
 
-	var range = [2, 50];
-
-	// console.log(range); //change the url below to the one on the website
-	var request = {
-		method: 'POST',
-		url: 'PHP/IPO4_job_list.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		data: range
-	};
-	$http(request).then(function successCallback(response) {
-
-		console.log(response);
-		if (response.data != "false"){
-			console.log("Successful");
-			$scope.jobListings = [];
+			console.log(response);
+			if (response.data != "false") {
+				console.log("Successful");
+				$scope.jobListings = [];
+				//console.log(response);
+				var res = angular.fromJson(response.data);
+				console.log(res);
+				angular.forEach(res, function (obj) {
+					var job = {
+						id: obj['id'],
+						title: obj['title'],
+						company: obj['listing_name'],
+						location: obj['city'] + " " + obj['province'],
+						created: obj['date_listed'],
+						recruiter: obj['type']
+					};
+					$scope.jobListings.push(job);
+				});
+				console.log("objects list ");
+				console.log($scope.jobListings);
+			} else {
+				console.log("Failed");
+			}
+		}, function errorCallback(response) {
+			//console.log("Error");
 			//console.log(response);
-			var res = angular.fromJson(response.data);
-			console.log(res);
-			angular.forEach(res, function(obj)
-			{
-				var job = {
-					id: obj['id'],
-					title: obj['title'],
-					company: obj['listing_name'],
-					location: obj['city'] + " " + obj['province'],
-					created: obj['date_listed'],
-					recruiter: obj['type']
-				};
-				$scope.jobListings.push(job);
-			});
-			console.log("objects list ");
-			console.log($scope.jobListings);
-		} else {
-			console.log("Failed");
-		}
-	}, function errorCallback(response) {
-		//console.log("Error");
-		//console.log(response);
-	});
-
+		});
+	};
 
 	$scope.showInfo = function(ev, id) {
 		console.log("Showing info for job of ID: " + id);
@@ -99,8 +97,14 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
 	};
 
 	$scope.myJobs=function(){
+        $mdDialog.hide();
+        if ($sessionStorage.user_id == undefined || !sessionStorage) {
+            $mdSidenav('account').open();
+            return ;
+        }
+        document.title = "My Jobs";
 		var user_id = $sessionStorage.user_id;
-		console.log("Showing info for job of ID: " + user_id);
+		console.log("Showing info for user of ID: " +  user_id);
 
 		var request = {
 			method: 'POST',
@@ -141,22 +145,93 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
 			});
 	};
 
-	$scope.showApplicants= function (job_id)
-	{
-		console.log("Showing info for job of ID: " + job_id);
+	$scope.setJobId=function(job_id)
+    {
+        $scope.job_id = job_id;
+    };
+
+    $scope.promiseApplicants = function() {
+        // This service's function returns a promise, but we'll deal with that shortly
+        applicantsService.showApplicants()
+        // then() called when son gets back
+            .then(function(data) {
+                // promise fulfilled
+                if (data==='true') {
+                    console.log("passed prommis");
+                } else {
+                    console.log("failed prommis");
+                }
+            }, function(error) {
+                // promise rejected, could log the error with: console.log('error', error);
+
+            });
+    };
+
+    gpg.factory('applicantsService', function ($http, $q) {
+        return {
+            showApplicants: function() {
+                console.log("Showing info for job of ID for applicants: " + $scope.job_id);
+
+                var request = {
+                    method: 'POST',
+                    url: './PHP/IPO38_list_applicants.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    data: $scope.job_id
+                };
+                $http(request).then(function successCallback(response) {
+
+                        console.log(response);
+                        if (response.data != "false"){
+                            console.log("Successful request for applicants");
+                            $scope.applicants = [];
+                            //console.log(response);
+                            var res = angular.fromJson(response.data);
+                            console.log(res);
+                            angular.forEach(res, function(obj)
+                            {
+                                var user = {
+                                    application_id:obj['tb_application_link.id'],
+                                    user_id: obj['tb_user.id'],
+                                    first_name: obj['first_name'],
+                                    surname: obj['surname'],
+                                    last_qualification:obj['last_qualification']
+                                };
+                                $scope.applicants.push(user);
+                            });
+
+                            console.log("objects list ");
+                            console.log($scope.applicants.length);
+                            console.log($scope.applicants);
+                            return (true);
+                        } else {
+                            console.log("Failed");
+                            return $q.reject(false);
+                        }
+                    }
+                    , function errorCallback(response) {
+                        console.log("Error");
+                        console.log(response);
+                        return $q.reject(response.data);
+                    });
+            }
+        };
+    });
+	/*$scope.showApplicants= function (){
+
+		console.log("Showing info for job of ID: " + $scope.job_id);
 
 		var request = {
 			method: 'POST',
-			url: 'PHP/IPO38_list_aplicants.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+			url: './PHP/IPO38_list_applicants.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			data: job_id
+			data: $scope.job_id
 		};
 		$http(request).then(function successCallback(response) {
 
 				console.log(response);
 				if (response.data != "false"){
 					console.log("Successful");
-					$scope.aplicants = [];
+					$scope.applicants = [];
 					//console.log(response);
 					var res = angular.fromJson(response.data);
 					console.log(res);
@@ -169,10 +244,11 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
 							surname: obj['surname'],
 							last_qualification:obj['last_qualification']
 						};
-						$scope.aplicants.push(user);
+						$scope.applicants.push(user);
 					});
 					console.log("objects list ");
-					console.log($scope.aplicants);
+                    console.log($scope.applicants.length);
+					console.log($scope.applicants);
 				} else {
 					console.log("Failed");
 				}
@@ -181,9 +257,7 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
 				console.log("Error");
 				console.log(response);
 			});
-	};
-
-	document.title = "Jobs";
+	};*/
 
 	$scope.toggleLeft = function() {
         $mdSidenav('left').toggle();
@@ -193,16 +267,8 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, userId,$mdSidenav) {
         $mdSidenav('left').close();
     };
 
-	/*$scope.showInfo = function(ev, id) {
-		console.log("Showing info for job of ID: " + id);
-		$scope.selectedJob = id;
-		$mdDialog.show({
-			locals: {job_id: id, user_id: userId.getUserId()},
-			controller: dialog__,
-			templateUrl: "jobs_info.html",
-			parent: angular.element(document.body),
-			targetEvent: ev,
-			fullscreen: true
-		});
-	};*/
+    $scope.openMenu = function($mdOpenMenu, ev) {
+        originatorEv = ev;
+        $mdOpenMenu(ev);
+    };
 });

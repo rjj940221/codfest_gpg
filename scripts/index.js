@@ -1,6 +1,6 @@
 gpg = angular.module('home', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngStorage']);
 
-gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog, userId, $sessionStorage, $window) {
+gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog, userId, $sessionStorage, $window, $route) {
         document.title = "Home";
 
         $scope.toggleAccount = function () {
@@ -62,7 +62,9 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
                     $sessionStorage.rights = $scope.user.admin_rights;
                     $scope.isLoading = false;
                     console.log("Successful Login");
+                    $route.reload();
                     $mdSidenav('account').close();
+
                 } else {
                     console.log("Failed Login");
                     $scope.isLoading = false;
@@ -182,29 +184,7 @@ gpg.controller('map__', function($scope) {
     };
 });
 
-gpg.config(function($routeProvider) {
-    $routeProvider
-        .when('/', {
-            templateUrl: 'home.html',
-            controller: 'home__'
-        })
-        .when('/comm_safety', {
-            templateUrl: 'comm_safety_home.html',
-            controller: 'safety__'
-        })
-        .when('/jobs', {
-            templateUrl: 'jobs.html',
-            controller: 'jobs__'
-        })
-		.when('/map', {
-			templateUrl: 'map.html',
-			controller: 'map__'
-		})
-		.when('/create_job', {
-			templateUrl: 'create_job.html',
-			controller: 'create_job__'
-		});
-});
+
 
 gpg.factory('userId', function() {
 	var data =

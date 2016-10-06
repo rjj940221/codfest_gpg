@@ -8,14 +8,19 @@
 	</md-toolbar>
 
 	<md-content layout-padding>
-		<md-button href="#/create_job" aria-label="create a job">Create a job</md-button>
+        <md-list flex>
+		    <md-list-item><md-button href="#/create_job" aria-label="create a job">Create a job</md-button></md-list-item>
+            <md-list-item><md-button href="#/my_jobs" aria-label="My jobs">My jobs</md-button></md-list-item>
+            <md-list-item><md-button href="#" aria-label="My applications">My applications</md-button></md-list-item>
+
+        </md-list>
 		<p>
 			Here be words and buttons to give yee options
 		</p>
 	</md-content>
 </md-sidenav>
 
-<div ng-controller="jobs__" layout="column" flex>
+<div ng-controller="jobs__" layout="column" flex ng-init="listJobs()">
 	<md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
 	    <div class="md-toolbar-tools">
 	        <md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()">
