@@ -19,7 +19,7 @@ gpg.controller('map__', function($scope) {
                 var saps = new google.maps.Marker({
                     position: new google.maps.LatLng(item.latitude, item.longitude),
                     map: map,
-                    icon: image_saps,
+                    icon: "svg/ic_saps_black_40px.svg",
                     title: item.name,
                     zIndex: parseInt(item.id)
                 });
