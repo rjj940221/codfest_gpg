@@ -20,7 +20,7 @@
     </md-content>
 </md-sidenav>
 
-<div ng-controller="jobs__" layout="column" flex ng-init="showApplicants()">
+<div ng-controller="applicants__" layout="column" flex>
     <md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
         <div class="md-toolbar-tools">
             <md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()">
@@ -50,6 +50,35 @@
                         <p layout="row" layout-align="begin" class="jobs-text">
                             {{app.last_qualification}}
                         </p>
+                    </div>
+                    <div layout="row" layout-wrap layout-align="space-between center" flex>
+                        <p layout="row" layout-align="begin" class="jobs-text">
+                            {{app.status}}
+                        </p>
+                    </div>
+                    <div>
+                        <md-menu>
+                            <md-button aria-label="Job Menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+                                <md-icon md-menu-origin="" md-svg-icon="svg/ic_menu_white_12px.svg"></md-icon>
+                            </md-button>
+                            <md-menu-content width="4">
+                                <!--<md-menu-item>
+                                    <md-button href="#" >
+                                        View User Profile
+                                    </md-button>
+                                </md-menu-item>-->
+                                <md-menu-item>
+                                    <md-button ng-click="setOffer(app, 'offer')">
+                                        Make Offer
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="setOffer(app, 'rejected')">
+                                        Reject
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
                     </div>
                 </div>
             </md-list-item>

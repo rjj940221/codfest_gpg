@@ -11,13 +11,14 @@ if (is_numeric($request))
     $query;
     $outp;
 
-    $query="SELECT `tb_job`.`id`,`tb_job`.`title`,`tb_job`.`city`, `tb_job`.`province`, `tb_job`.`type`, `tb_job`.`date_listed`, `tb_company`.`listing_name`, `tb_application_link`.`status`  FROM `owen_gpg`.`tb_job`
+    $query="SELECT `tb_job`.`id`,`tb_job`.`title`,`tb_job`.`city`, `tb_job`.`province`, `tb_job`.`type`, `tb_job`.`date_listed`, `tb_company`.`listing_name`, `tb_application_link`.`status` , `tb_application_link`.`id` AS application_id
+FROM `owen_gpg`.`tb_job`
 JOIN `owen_gpg`.`tb_company` ON `tb_company`.`id` = `tb_job`.`company_id`
 INNER JOIN `owen_gpg`.`tb_application_link` ON `tb_application_link`.`job_id` = `tb_job`.`id`
 WHERE `tb_application_link`.`user_id` = '".$request."'
 ORDER BY `id` DESC;";
 
-    //echo $query;
+   // echo $query;
 
     if (isset($query)) {
         $result = mysqli_query($con, $query);

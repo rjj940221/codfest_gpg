@@ -13,12 +13,12 @@ if (is_numeric($request))
     $query;
     $outp;
 
-    $query="SELECT `owen_gpg`.`tb_application_link`.`id`, `tb_user`.`id`, `tb_user`.`first_name`, `tb_user`.`surname` ,".
+    $query="SELECT `owen_gpg`.`tb_application_link`.`id` AS application_id, `tb_user`.`id` AS user_id, ".
+        "`tb_user`.`first_name`, `tb_user`.`surname` ,`tb_application_link`.`status`,".
         "(SELECT `owen_gpg`.`tb_qualification`.`name` FROM `owen_gpg`.`tb_qualification` ".
         "WHERE `tb_qualification`.`user_id` = `tb_user`.`id` ORDER BY `tb_qualification`.`end_date` DESC LIMIT 1)".
-        " AS 'last_qualification' FROM `owen_gpg`.`tb_user` ".
-        "INNER JOIN `owen_gpg`.`tb_application_link` ON `tb_user`.`id`=`tb_application_link`.`user_id` ".
-        "WHERE `tb_application_link`.`job_id` = '".$request."';";
+        " AS 'last_qualification' FROM `owen_gpg`.`tb_user` INNER JOIN `owen_gpg`.`tb_application_link` ON ".
+        "`tb_user`.`id`=`tb_application_link`.`user_id` WHERE `tb_application_link`.`job_id` = '".$request."';";
 
     //echo $query;
 
