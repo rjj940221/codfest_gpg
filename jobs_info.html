@@ -12,7 +12,29 @@
 		</md-toolbar>
 
 		<md-dialog-content>
-			<div class="md-dialog-content">
+			<div class="md-dialog-content" layout="column">
+				<div layout="row">
+					<span flex></span>
+					<span class="badge deep-orange" ng-show="{{job_info.recruiter === 'recruting_agency'}}">Recruiting Agency</span>
+					<span class="badge blue" ng-show="{{job_info.recruiter === 'comercial'}}">Commercial</span>
+					<span class="badge amber" ng-show="{{job_info.recruiter === 'private'}}">Private</span>
+				</div>
+					<h1 style="margin: 0">{{job_info.title}}</h1>
+					<div layout="column" layout.align="start start" flex>
+						<p layout="row" class="jobs-text" style="margin-right: auto">
+							<md-icon md-svg-src="svg/ic_location_city_black_24px.svg"></md-icon>
+							{{job_info.company}}
+						</p>
+						<p layout="row" class="jobs-text" style="margin-right: auto">
+							<md-icon md-svg-src="svg/ic_place_black_24px.svg"></md-icon>
+							{{job_info.location}}
+						</p>
+						<p layout="row" class="jobs-text" style="margin-right: auto">
+							<md-icon md-svg-src="svg/ic_access_time_black_24px.svg"></md-icon>
+							{{job_info.created}}
+						</p>
+					</div>
+					<h3 style="margin: 1rem 0">Discription</h3>
 				<p>
 					{{job_info.description}}
 				</p>

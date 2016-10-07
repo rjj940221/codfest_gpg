@@ -21,12 +21,12 @@ gpg.controller('applicants__', function($scope, $http, $mdDialog, $mdSidenav, $s
                 {
                     console.log(obj);
                     var user = {
-                        application_id: obj['application_id'],
-                        first_name: obj['first_name'],
-                        last_qualification:obj['last_qualification'],
-                        status:obj['status'],
-                        surname:obj['surname'],
-                        user_id:obj['user_id']
+                        application_id: obj.application_id,
+                        first_name: obj.first_name,
+                        last_qualification:obj.last_qualification,
+                        status:obj.status,
+                        surname:obj.surname,
+                        user_id:obj.user_id
                     };
                     $scope.applicants.push(user);
                 });
@@ -41,15 +41,15 @@ gpg.controller('applicants__', function($scope, $http, $mdDialog, $mdSidenav, $s
         });
 
     $scope.setOffer=function(application, state) {
-        console.log("change app: " + application['application_id'] + " curent stateus " + application['status'] + " state "+state);
+        console.log("change app: " + application.application_id + " curent stateus " + application.status + " state "+ state);
         var user = {
-            application_id:application['application_id'],
+            application_id:application.application_id,
             app_state: state
         };
         console.log(user);
         var request = {
             method: 'POST',
-            url: 'PHP/update_app_id.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+            url: 'http://owen.exall.za.net/gpg/update_app_id.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: user
         };
@@ -57,7 +57,7 @@ gpg.controller('applicants__', function($scope, $http, $mdDialog, $mdSidenav, $s
             if (response.data != "false"){
                 console.log("Successful");
                 console.log(response);
-                $scope.$apply(application["status"] = state);
+                $scope.$apply(application.status = state);
             } else {
                 console.log("Failed");
             }
@@ -68,15 +68,15 @@ gpg.controller('applicants__', function($scope, $http, $mdDialog, $mdSidenav, $s
     };
 
     $scope.reactOffer=function(job, state) {
-        console.log("change app: " + job['application_id'] + " curent stateus " + job['status'] + " state "+state);
+        console.log("change app: " + job.application_id + " curent stateus " + job.status + " state "+ state);
         var user = {
-            application_id:job['application_id'],
+            application_id:job.application_id,
             app_state: state
         };
         console.log(user);
         var request = {
             method: 'POST',
-            url: 'PHP/update_app_id.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+            url: 'http://owen.exall.za.net/gpg/update_app_id.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: user
         };
@@ -84,7 +84,7 @@ gpg.controller('applicants__', function($scope, $http, $mdDialog, $mdSidenav, $s
             if (response.data != "false"){
                 console.log("Successful");
                 console.log(response);
-                $scope.$apply(job["status"] = state);
+                $scope.$apply(job.status = state);
             } else {
                 console.log("Failed");
             }
@@ -109,5 +109,4 @@ gpg.controller('applicants__', function($scope, $http, $mdDialog, $mdSidenav, $s
         console.log("test job_id :" + $sessionStorage.job_id);
         $mdOpenMenu();
     };
-
 });

@@ -8,14 +8,17 @@
 	</md-toolbar>
 
 	<md-content layout-padding>
-        <md-list flex >
-		    <md-list-item><md-button href="#/create_job" aria-label="create a job">Create a job</md-button></md-list-item>
-            <md-list-item><md-button href="#/my_jobs" aria-label="My jobs">My jobs</md-button></md-list-item>
-            <md-list-item><md-button href="#/my_applications" aria-label="My applications">My applications</md-button></md-list-item>
-        </md-list>
-		<h3 ng-show="$scope.user == undefined">
-			Login for more options.
+		<div layout="column" flex ng-hide="user">
+			<md-button style="margin-left: auto" href="#/create_job" aria-label="create a job">Create a job</md-button>
+            <md-button style="margin-left: auto; text-align: right" href="#/my_jobs" aria-label="My jobs">My jobs</md-button>
+            <md-button style="margin-left: auto" href="#/my_applications" aria-label="My applications">My applications</md-button>
+		</div>
+		<h3 ng-show="user">
+			Please
+			<md-button class="md-raised" aria-label="login" ng-click="openAccount()">login</md-button>
+			 for more options.
 		</h3>
+
 		<p>
 			Here be words and buttons to give yee options
 		</p>
@@ -46,7 +49,10 @@
 				<div layout="column" layout-align="space-around" flex>
 					<div flex layout="row" layout-align="space-between center">
 						<h2 class="jobs-text">{{job.title}}</h2>
-						<span class="badge" ng-hide="job.recruiter"></span>
+						<span flex></span>
+						<span class="badge deep-orange" ng-show="{{job.recruiter === 'recruting_agency'}}"></span>
+						<span class="badge blue" ng-show="{{job.recruiter === 'comercial'}}"></span>
+						<span class="badge amber" ng-show="{{job.recruiter === 'private'}}"></span>
 					</div>
 					<div layout="row" layout-wrap layout-align="space-between center" flex>
 						<p layout="row" layout-align="begin" class="jobs-text">

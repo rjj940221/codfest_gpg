@@ -37,6 +37,10 @@ a, a:link, a:visited, a:hover {
     background-color: #2196F3;
 }
 
+.amber {
+	background-color: #FFC107;
+}
+
 .background-image {
     display: block;
     margin: auto;
@@ -61,7 +65,6 @@ a, a:link, a:visited, a:hover {
     font-size: 0.8rem;
     font-weight: 300;
     color: #fff;
-    background-color: #26a69a;
     border-radius: 5px;
 }
 

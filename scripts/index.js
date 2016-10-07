@@ -14,6 +14,11 @@ gpg.controller('home__', function($http, $scope, $timeout, $mdSidenav, $mdDialog
         $mdSidenav('account').toggle();
     };
 
+	$scope.openAccount = function() {
+		$mdSidenav('left').close();
+		$mdSidenav('account').open();
+	};
+
     $scope.closeAccount = function() {
         console.log("Nav close");
         $mdSidenav('account').close();
