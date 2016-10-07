@@ -7,13 +7,16 @@
 		</div>
 		<a href="#/comm_safety"><h1 class="md-toolbar-item">Community Safety</h1></a>
         <span flex></span>
+        <md-button class="md-icon-button md-toolbar-item" aria-label="Account" ng-click="toggleAccount()">
+            <md-icon md-svg-src="svg/ic_account_circle_white_24px.svg"></md-icon>
+        </md-button>
     </div>
 </md-toolbar>
 
 <md-content flex layout-padding>
     <div layout-align="center center">
         <div class="buttons" layout="row" layout-align="space-around center" layout-wrap>
-            <a href="incident.html">
+            <a href="#incident">
                 <div class="big-button red" md-whiteframe="5">
                     <img class="background-image" src="svg/ic_report_problem_black_48px.svg"/>
                     <div class="footer" layout-align="center center">
@@ -21,7 +24,7 @@
                     </div>
                 </div>
             </a>
-            <a href="complaint.html">
+            <a href="#complaint">
                 <div class="big-button orange" md-whiteframe="5">
                     <img class="background-image" src="svg/ic_sentiment_dissatisfied_black_48px.svg"/>
                     <div class="footer" layout-align="center center">
@@ -30,11 +33,10 @@
                 </div>
             </a>
             <a href="#map">
-       <!--     <a ng-click="openMap()">-->
                 <div class="big-button green" md-whiteframe="5">
                     <img class="background-image" src="svg/ic_map_black_48px.svg"/>
                     <div class="footer" layout-align="center center">
-                        <h3 style="margin: 0">View Map</h3>
+                        <h3 style="margin: 0">Crime Map</h3>
                     </div>
                 </div>
             </a>

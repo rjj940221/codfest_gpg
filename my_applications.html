@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
+    <md-toolbar class="site-content-toolbar" ng-click="close()">
+        <div class="md-toolbar-tools">
+            <h2 class="md-toolbar-item">Options</h2>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+
+    <md-content layout-padding>
+        <md-list flex>
+            <md-list-item><md-button href="#/create_job" aria-label="create a job">Create a job</md-button></md-list-item>
+            <md-list-item><md-button href="#/my_jobs" aria-label="My jobs">My jobs</md-button></md-list-item>
+            <md-list-item><md-button href="#/my_applications" aria-label="My applications">My applications</md-button></md-list-item>
+        </md-list>
+        <p>
+            Here be words and buttons to give yee options
+        </p>
+    </md-content>
+</md-sidenav>
+
+<div ng-controller="jobs__" layout="column" flex ng-init="myApplications()">
+    <md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()">
+                <md-icon md-svg-src="svg/ic_menu_white_24px.svg"></md-icon>
+            </md-button>
+            <div layout="row" layout-align="center center">
+				<a hide show-gt-xs href="#/"><h1 class="md-toolbar-item">Home</h1></a>
+				<md-icon hide show-gt-xs md-svg-icon="svg/ic_chevron_right_white_24px.svg" style="color: inherit" aria-hidden="true"></md-icon>
+				<a href="#/jobs"><h1 class="md-toolbar-item">Jobs</h1></a>
+				<md-icon md-svg-icon="svg/ic_chevron_right_white_24px.svg" style="color: inherit" aria-hidden="true"></md-icon>
+				<a href="#/my_applications"><h1 class="md-toolbar-item">My Applications</h1></a>
+            </div>
+            <span flex></span>
+            <md-button class="md-icon-button md-toolbar-item" aria-label="Account" ng-click="toggleAccount()">
+                <md-icon md-svg-src="svg/ic_account_circle_white_24px.svg"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-content flex layout-padding>
+        <md-list flex>
+            <md-list-item class="jobs-item" md-whiteframe="2" ng-repeat="job in jobListings">
+                <div layout="column" layout-align="space-around" flex>
+                    <div flex layout="row" layout-align="space-between center">
+                        <h2 class="jobs-text">{{job.title}}</h2>
+                        <span class="badge" ng-hide="job.recruiter"></span>
+                        <div>{{job.status}}</div>
+                    </div>
+                    <div layout="row" layout-wrap layout-align="space-between center" flex>
+                        <p layout="row" layout-align="begin" class="jobs-text">
+                            <md-icon md-svg-src="svg/ic_location_city_black_24px.svg"></md-icon>
+                            {{job.company}}
+                        </p>
+                        <p layout="row" layout-align="center" class="jobs-text">
+                            <md-icon md-svg-src="svg/ic_place_black_24px.svg"></md-icon>
+                            {{job.location}}
+                        </p>
+                        <p layout="row" layout-align="end" class="jobs-text">
+                            <md-icon md-svg-src="svg/ic_access_time_black_24px.svg"></md-icon>
+                            {{job.created}}
+                        </p>
+                    </div>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</div>
