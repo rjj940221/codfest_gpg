@@ -8,27 +8,29 @@
 	</md-toolbar>
 
 	<md-content layout-padding>
-        <md-list flex>
+        <md-list flex ng-show="$scope.user !== undefined">
 		    <md-list-item><md-button href="#/create_job" aria-label="create a job">Create a job</md-button></md-list-item>
             <md-list-item><md-button href="#/my_jobs" aria-label="My jobs">My jobs</md-button></md-list-item>
             <md-list-item><md-button href="#/my_applications" aria-label="My applications">My applications</md-button></md-list-item>
-
         </md-list>
+		<h3 ng-show="$scope.user == undefined">
+			Login for more options.
+		</h3>
 		<p>
 			Here be words and buttons to give yee options
 		</p>
 	</md-content>
 </md-sidenav>
 
-<div ng-controller="jobs__" layout="column" flex ng-init="listJobs()">
+<div ng-controller="jobs__" layout="column" flex>
 	<md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
 	    <div class="md-toolbar-tools">
 	        <md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()">
 	            <md-icon md-svg-src="svg/ic_menu_white_24px.svg"></md-icon>
 	        </md-button>
 			<div layout="row" layout-align="center center">
-				<a href="#/"><h1 class="md-toolbar-item">Home</h1></a>
-				<md-icon md-svg-icon="svg/ic_chevron_right_white_24px.svg" style="color: inherit" aria-hidden="true"></md-icon>
+				<a hide-md href="#/"><h1 class="md-toolbar-item">Home</h1></a>
+				<md-icon hide-md md-svg-icon="svg/ic_chevron_right_white_24px.svg" style="color: inherit" aria-hidden="true"></md-icon>
 			</div>
 	        <h2 class="md-toolbar-item">Jobs</h2>
 	        <span flex></span>

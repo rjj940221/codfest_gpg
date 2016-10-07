@@ -34,15 +34,14 @@ gpg.config(function($routeProvider) {
         })
         .when('/my_jobs', {
             templateUrl: 'my_jobs.html',
-            controller: 'jobs__'
+            controller: 'my_jobs__'
         })
         .when('/applicants', {
             templateUrl: 'applicants.html',
-            controller: 'jobs__'
+            controller: 'applicants__'
         })
         .when('/my_applications', {
         templateUrl: 'my_applications.html',
-        controller: 'jobs__'
-    })
-    ;
+        controller: 'my_applications__'
+    });
 });
