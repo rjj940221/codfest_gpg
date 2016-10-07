@@ -1,5 +1,13 @@
 gpg.controller('map__', function($scope) {
 
+  incidents_db = [];
+  var url_incident = "http://owen.exall.za.net/GPG/select_incidents.php";
+  $.getJSON(url_incident, function(result) {
+  	$.each(result, function(i, field) {
+  		incidents_db.push(field);
+  	});
+  });
+
     $scope.gimme_heat = function () {
         load_heatmap();
         heatmap.setMap(heatmap.getMap() ? null : map);
