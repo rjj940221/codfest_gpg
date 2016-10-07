@@ -24,16 +24,10 @@
             </md-button>
             </h2>
             <div flex aria-label="map for select location" style="height: 100vw">
-                <div id="map" style="height: 90%; width: 90%; padding: 0; margin: auto"></div>
-                <script type="text/javascript">
-                    console.log("init_map");
-                      init_map();
-                    //Add listener
-                      google.maps.event.addListener(marker, "click", function (event) {
-                      var latitude = event.latLng.lat();
-                      var longitude = event.latLng.lng();
-                      console.log( latitude + ', ' + longitude );
-                    }); //end addListener
+                <div id="map" ng-click="map.addListener()" style="height: 90%; width: 90%; padding: 0; margin: auto"></div>
+                <script type="text/javascript" >
+                    console.log("draw_map");
+                      draw_map();
                 </script>
             </div>
         </div>

@@ -1,4 +1,7 @@
 gpg.controller('incident__', function($scope) {
+var marker = {};
+
+
     $scope.get_my_loc = function() {
         console.log("TTTT");
         navigator.geolocation.getCurrentPosition(push_coordinates, gps_error, {
@@ -24,10 +27,11 @@ gpg.controller('incident__', function($scope) {
                 if (status === 'OK') {
                     if (results[0]) {
                         map.setZoom(11);
-                        var marker = new google.maps.Marker({
+                            var marker = new google.maps.Marker({
                             position: latlng,
                             map: map
                         });
+
                         infowindow.setContent(results[0].formatted_address);
                         infowindow.open(map, marker);
                         console.log($scope);
