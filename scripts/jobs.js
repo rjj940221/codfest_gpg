@@ -72,7 +72,7 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, $mdSidenav, $session
                     angular.forEach(res, function (obj) {
                         var job = {
                             id: obj.id,
-                            title: obj.itle,
+                            title: obj.title,
                             company: obj.listing_name,
                             location: obj.city + " " + obj.province,
                             created: obj.date_listed,
