@@ -1,5 +1,32 @@
-gpg.controller('incident__', function($scope) {
+gpg.controller('incident__', function($http, $scope) {
 var marker = {};
+
+    $scope.submit = function () {
+        console.log("submit incident");
+        var incident = {
+            insert: "yes",
+            lat: $scope.latitude,
+            long: $scope.longitude,
+            desc: $scope.description
+        };
+        console.log(incident);
+        var request = {
+            method: 'POST',
+            url: 'http://owen.exall.za.net/gpg/create_incident.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}, 
+            data: incident
+        };
+        $http(request).then(function successCallback(response) {
+            if (response.data == "true")
+                alert("Incident logged");
+            else{
+                console.log(response);
+                alert("Failed to log Incident");
+            }
+        }, function errorCallback(response) {
+            console.log("Error");
+        });
+    };
 
 
     $scope.get_my_loc = function() {
@@ -12,7 +39,9 @@ var marker = {};
     function push_coordinates(position) {
         console.log("GPS coordinates fetched!");
         var lat = position.coords.latitude;
+        $scope.latitude = lat;
         var lng = position.coords.longitude;
+        $scope.longitude = lng;
         var geocoder = new google.maps.Geocoder();
         var infowindow = new google.maps.InfoWindow();
         var latlng = {
@@ -56,6 +85,9 @@ var marker = {};
         console.log("GPS failure!");
 		var geocoder = new google.maps.Geocoder();
         var infowindow = new google.maps.InfoWindow();
+
+        $scope.latitude = -26.1189003;
+        $scope.longitude = 27.9513096;
 
         geocoder.geocode({
                 'location': my_location

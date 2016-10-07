@@ -19,7 +19,7 @@
             <div ng-include="'address.html'"></div>
 			<md-input-container>
 				<label>Description</label>
-				<textarea ng-model="user.name"></textarea>
+				<textarea ng-model="description"></textarea>
 			</md-input-container>
         </div>
         <div layout="column" layout-wrap>
@@ -27,7 +27,7 @@
             <md-button class="md-raised" aria-label="Current Location" ng-click="get_my_loc()" style="margin-left: auto; margin-right: 0.5rem">
                 Get Location
             </md-button>
-            <md-button class="md-raised" href="" aria-label="Submit" ng-click="null" style="max-width: 200px; margin-right: auto" >
+            <md-button class="md-raised" href="" aria-label="Submit" ng-click="submit()" style="max-width: 200px; margin-right: auto" >
                 Submit
             </md-button>
             </h2>
