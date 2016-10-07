@@ -1,11 +1,5 @@
 gpg.controller('jobs__', function($scope, $http, $mdDialog, $mdSidenav, $sessionStorage, $q) {
-	$scope.user = [];
-	if ($sessionStorage.user_id) {
-        console.log("Session already exists " + $sessionStorage.user_id);
-        $scope.user.id = $sessionStorage.user_id;
-        $scope.user.first_name = $sessionStorage.user_name;
-        $scope.user.admin_rights = $sessionStorage.rights;
-    }
+
     document.title = "Jobs";
     var range = [2, 50];
 
@@ -104,6 +98,13 @@ gpg.controller('jobs__', function($scope, $http, $mdDialog, $mdSidenav, $session
         };
 
 		$scope.toggleLeft = function() {
+			$scope.user = [];
+		    if ($sessionStorage.user_id) {
+		        console.log("Session already exists " + $sessionStorage.user_id);
+		        $scope.user.id = $sessionStorage.user_id;
+		        $scope.user.first_name = $sessionStorage.user_name;
+		        $scope.user.admin_rights = $sessionStorage.rights;
+		    }
 			console.log("toggleLeft");
 			$mdSidenav('left').toggle();
 		};
