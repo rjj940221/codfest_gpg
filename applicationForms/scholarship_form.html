@@ -3,9 +3,9 @@
     <md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
         <div class="md-toolbar-tools">
             <div layout="row" layout-align="center center">
-                <a href="#/comm_safety"><h1 class="md-toolbar-item">Forms</h1></a>
+                <a href="#/form"><h1 class="md-toolbar-item">Forms</h1></a>
                 <md-icon md-svg-icon="svg/ic_chevron_right_white_24px.svg" style="color: inherit" aria-hidden="true"></md-icon>
-                <a href="#/complaint"><h1 class="md-toolbar-item">Scholarship</h1></a>
+                <a href="#/scholarship"><h1 class="md-toolbar-item">Scholarship</h1></a>
             </div>
             <span flex></span>
             <md-button class="md-icon-button md-toolbar-item" aria-label="Account" ng-click="toggleAccount()">
@@ -159,7 +159,7 @@
 
             <md-input-container style="margin: 0">
                 <label>Cellphone</label>
-                <input type="input" ng-model="gauCellphone" ng-pattern="/^[0-9]{13}$/" required flex></textarea>
+                <input type="input" ng-model="gauCellphone" required flex></textarea>
                 <div ng-messages="scholarship.cellphone.$error" ng-hide="showHints">
                     <div ng-message="pattern">Only 13 numbers allowed</div>
                 </div>

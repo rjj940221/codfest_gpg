@@ -20,4 +20,46 @@ gpg.controller('scholarship__', function($http, $scope, $sessionStorage) {
 	}, function errorCallback(response) {
 		console.log("Error");
 	});
+
+	$scope.submit = function (ev) {
+		var insert = {
+			insert: "yes",
+			user_id: $sessionStorage.user_id,
+			nationality: $scope.nationality,
+			racial_group: $scope.racialGroup,
+			local_mani: $scope.municipality,
+			ward: $scope.ward,
+			youth_care: $scope.childCare,
+			has_disability: $scope.disability,
+			disability: $scope.disabilityDetail,
+			uniAddmission: $scope.uniAdmission,
+			studyingUni: $scope.uniStudy,
+			institution: $scope.institution,
+			degree: $scope.degree,
+			cyos: $scope.currYear,
+			gauName: $scope.gauName,
+			gauSurname: $scope.gauSurname,
+			gauID: $scope.gauId,
+			gauTelephone: $scope.gauTelephone,
+			gauCellphone: $scope.gauCellphone,
+			gauEmail: $scope.gauEmail,
+			gauEmp: $scope.employment
+		};
+		console.log(insert);
+		var request = {
+			method: 'POST',
+			url: 'http://owen.exall.za.net/gpg/submit_social_scholarship.php',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			data: insert
+		};
+		$http(request).then(function successCallback(response) {
+			if (response.data == "true")
+				alert("Submitted Application for processing.");
+			else
+				alert("Application Submission failed.");
+		}, function errorCallback(response) {
+			console.log("Error");
+			console.log(response);
+		});
+	}
 });

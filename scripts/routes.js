@@ -44,6 +44,10 @@ gpg.config(function($routeProvider) {
             templateUrl: 'my_applications.html',
             controller: 'jobs__'
         })
+        .when('/form', {
+            templateUrl: 'forms_list.html',
+            controller: 'forms__'
+        })
         .when('/scholarship', {
             templateUrl: 'applicationForms/scholarship_form.html',
             controller: 'scholarship__'
