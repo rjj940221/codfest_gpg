@@ -8,12 +8,12 @@
 	</md-toolbar>
 
 	<md-content layout-padding>
-		<div layout="column" flex ng-hide="user">
+		<div layout="column" flex ng-hide="user.id">
 			<md-button style="margin-left: auto" href="#/create_job" aria-label="create a job">Create a job</md-button>
             <md-button style="margin-left: auto; text-align: right" href="#/my_jobs" aria-label="My jobs">My jobs</md-button>
             <md-button style="margin-left: auto" href="#/my_applications" aria-label="My applications">My applications</md-button>
 		</div>
-		<h3 ng-show="user">
+		<h3 ng-show="user.id">
 			Please
 			<md-button class="md-raised" aria-label="login" ng-click="openAccount()">login</md-button>
 			 for more options.

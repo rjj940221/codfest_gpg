@@ -17,6 +17,10 @@
     <div layout="column" layout-align="space-between">
         <div layout="column" layout-wrap>
             <div ng-include="'address.html'"></div>
+			<md-input-container>
+				<label>Discription</label>
+				<textarea ng-model="user.name"></textarea>
+			</md-input-container>
         </div>
         <div layout="column" layout-wrap>
             <h2>Select a location

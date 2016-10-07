@@ -142,7 +142,7 @@ function load_heatmap(map) {
 	});
 }
 
-var my_location = new google.maps.LatLng(-26.114779, 27.952908);
+var my_location = new google.maps.LatLng(-26.1189003, 27.9513096);
 var map_options = {
 	//mapTypeId: 'satellite',
 	zoom: 15,
