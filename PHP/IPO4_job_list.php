@@ -17,6 +17,7 @@ if ($request)
 	$query="SELECT `tb_job`.`id`,`tb_job`.`title`,`tb_job`.`city`, `tb_job`.`province`, `tb_job`.`type`, `tb_job`.`date_listed`, `tb_company`.`listing_name`  
 FROM `owen_gpg`.`tb_job`
 JOIN `owen_gpg`.`tb_company` ON `tb_company`.`id` = `tb_job`.`company_id`
+WHERE `tb_job`.`status` = 'avalible'
 ORDER BY `id` DESC;";
 
 	if (isset($query)) {

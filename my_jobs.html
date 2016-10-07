@@ -19,7 +19,7 @@
     </md-content>
 </md-sidenav>
 
-<div ng-controller="jobs__" layout="column" flex ng-init="myJobs()">
+<div ng-controller="my_jobs__" layout="column" flex ng-init="myJobs()">
     <md-toolbar class="site-content-toolbar md-whiteframe-glow-z2">
         <div class="md-toolbar-tools">
             <md-button class="md-icon-button md-toolbar-item" aria-label="Settings" ng-click="toggleLeft()">
@@ -75,6 +75,11 @@
                                 <md-menu-item>
                                     <md-button href="#/applicants">
                                       View Applicants
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="delete_job(job)">
+                                        Delete Job Listing
                                     </md-button>
                                 </md-menu-item>
                             </md-menu-content>

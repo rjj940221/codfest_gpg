@@ -47,6 +47,32 @@ gpg.controller('my_jobs__', function($scope, $http, $mdDialog, $mdSidenav, $sess
         });
         }
 
+    $scope.delete_job=function(job){
+        var request = {
+            method: 'POST',
+            url: 'http://owen.exall.za.net/gpg/delete_from_job_by_id.php', //NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            data: job.id
+        };
+        $http(request).then(function successCallback(response) {
+
+            console.log(response);
+            if (response.data != "false") {
+                console.log("Successful");
+                //console.log(response);
+                var index = $scope.jobListings.indexOf(job);
+                $scope.jobListings.splice(index,1);
+                console.log("objects list ");
+                console.log($scope.jobListings);
+            } else {
+                console.log("Failed");
+            }
+        }, function errorCallback(response) {
+            console.log("Error");
+            console.log(response);
+        });
+    };
+
     $scope.toggleLeft = function()
     {
         $mdSidenav('left').toggle();
