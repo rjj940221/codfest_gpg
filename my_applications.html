@@ -64,16 +64,16 @@
                     </div>
                     <md-menu ng-show="job.status == 'offer'">
                         <md-button aria-label="Job Menu" ng-click="openMenu($mdOpenMenu, $event, job.id)" ng-show="job.status == 'offer'">
-                            <md-icon md-svg-icon="svg/ic_menu_white_12px.svg"></md-icon>
+                            <md-icon md-svg-icon="svg/ic_menu_white_12px.svg" ng-show="job.status == 'offer'"></md-icon>
                         </md-button>
                         <md-menu-content width="4" ng-show="job.status == 'offer'">
                             <md-menu-item ng-show="job.status == 'offer'">
-                                <md-button ng-click="reactOffer(job, 'accepted')">
+                                <md-button ng-click="reactOffer(job, 'accepted')" ng-show="job.status == 'offer'">
                                     accept offer
                                 </md-button>
                             </md-menu-item>
                             <md-menu-item ng-show="job.status == 'offer'">
-                                <md-button ng-click="reactOffer(job , 'rejected')">
+                                <md-button ng-click="reactOffer(job , 'rejected')" ng-show="job.status == 'offer'">
                                     reject offer
                                 </md-button>
                             </md-menu-item>
